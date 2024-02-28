@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | {{ author.name }}{% endblock title %}
+{% block content %}
+<h1>{{ author.name }}</h1>
+<p>Biography: {{ author.biography }}</p>
+{% endblock content %}

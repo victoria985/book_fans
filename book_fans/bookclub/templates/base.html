@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookFans{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        <span class="logo">Bookclub</span>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'genre_list' %}">Genre</a></li>
+            <li><a href="{% url 'book_list' %}">Books</a></li>
+            <li><a href="{% url 'author_list' %}">Authors</a></li>
+            <li><a href="{% url 'review_list' %}">Review</a></li>
+        </ul>
+    </header>    
+    <div class="messages">
+        {% for message in messages %}
+            <p class="message message-{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>       
+    <main>{% block content %}{%endblock content %}</main>    
+</body>
+</html>

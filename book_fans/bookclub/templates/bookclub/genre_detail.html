@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Genre Detail{% endblock title %}
+{% block content %}
+  <h1>{{ genre.name }}</h1>
+  <p>Number of books in this genre: {{ genre.book_set.count }}</p>
+  <p><a href="{% url 'genre_book_list' pk=genre.pk %}">View books in this genre</a></p>
+{% endblock content %}
+

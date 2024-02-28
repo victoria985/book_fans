@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Books in {{ genre.name }}{% endblock title %}
+{% block content %}
+    <h1>Books in {{ genre.name }}</h1>
+    <ul>
+        {% for book in books_in_genre %}
+            <li><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Review List{% endblock title %}
+{% block content %}
+  <h1>Review List</h1>
+  <ul>
+    {% for review in review_list %}
+      <li><a href="{% url 'review_detail' pk=review.pk %}">Review {{ forloop.counter }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
