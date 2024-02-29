@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+     {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}BookFans{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
-        <span class="logo">Bookclub</span>
-        <ul>
+        <a style="text-align: center;"></a>
+        <span class="logo">BookFans</span>
+        <ul class="nav">
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'genre_list' %}">Genre</a></li>
             <li><a href="{% url 'book_list' %}">Books</a></li>
             <li><a href="{% url 'author_list' %}">Authors</a></li>
             <li><a href="{% url 'review_list' %}">Review</a></li>
         </ul>
-    </header>    
+    </header>  
     <div class="messages">
         {% for message in messages %}
             <p class="message message-{{ message.tags }}">{{ message }}</p>
-        {% endfor %}
+        {% endfor %} 
     </div>       
-    <main>{% block content %}{%endblock content %}</main>    
+    <main>{% block content %}{%endblock content %}</main> 
+    <footer>
+        {% block footer %}{% endblock footer %}
+        <p>&copy; PTU20 2024
+            <a style="float:right;" href="https://www.pegasas.lt/" target="_blank"><img class="icon" src="{% static "img/Pegasas-logo_1_.webp" %}"></a>
+            <a style="float:right;" href="https://www.facebook.com/knyguklubas/" target="_blank"><img class="icon" src="{% static "img/pegasas.jpg" %}"></a>
+        </footer>        
 </body>
 </html>
