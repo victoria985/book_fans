@@ -1,17 +1,22 @@
 body {
     background-color: #cccccc;
+    /*background-image: url('/static/img/pilkas_tepliotas.jpg');*/
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
+    color: #171211;
     display: flex;
+    height: 160px;
     flex-direction: column;
     margin: 0; padding: 0;
     min-height: 100vh;
 }
 
 header {
-    background-color: aqua;
+    background-color: #f0eaea;
+   /* background-image: url('/static/img/reading.jpg');*/
+    height: 100px; /* Pavyzdinis aukštis, keiskite pagal poreikį */
     display: flex;
-    flex-direction: 0.5rem;
+    align-items: center; /* Vertikalus centravimas */
 }
 
 header .logo {
@@ -20,41 +25,51 @@ header .logo {
     padding: 0.5rem;
 }
 
-header ul.nav {
+.nav {
     display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    margin-block: 0.5rem;
-    margin-left: 1rem;
-    padding-inline: 0;
-    gap: 0.5rem;
-}    
+    justify-content: center; /* Centruoja elementus horizontaliai */
+  }
 
-header ul.nav li a, header ul.nav li form button {
-    background-color: #9E9764;
-    display: block;
-    margin: 0;
-    padding: 0.5rem;
-    border: 0;
-    border-bottom: 2px solid #102C54;
-    cursor: pointer;
-    color: #102C54;
-    font-size: 100%;
-    border-radius: 0.5rem;
-}
-
-header ul.nav li a:hover, header ul.nav form button:hover {
-    background-color: #a2b048;
-    border-bottom: 2px solid #056856;
-    color: #0d663a;
-    text-decoration: none;
-}    
+.nav ul {
+    list-style-type: none; /* Išjungia sąrašo taškus */
+    padding: 0; /* Pašalina vidinį padding */
+    margin: 0; /* Pašalina išorinį margin */
+  }
+  
+  .nav ul li {
+    display: inline-block;
+    margin-right: 10px; /* Norimo atstumo tarp nuorodų nustatymas */
+  }
 
 h1, h2, h3, h4, h5, h6 {
     background-color: #bbbbbb;
     border-bottom: 1px solid #888888;
     padding: 0.5rem;
     margin: 1rem 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h2 {
+    padding-bottom: 20px; /* Prideda 20 pikselių vidinį tarpą po h2 elementu */
+  }
+  
+  h3 {
+    padding-top: 20px; /* Prideda 20 pikselių vidinį tarpą prieš h3 elementą */
+  }
+  
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centruoti elementus horizontaliai */
+    gap: 10px; /* Atstumas tarp elementų */
+}
+
+.image-container img {
+    width: 100px; /* Sumažinti knygų dydį */
+    height: auto; /* Nesuvirškinti proporcijų */
 }
 
 h1:first-child, h2:first-child, h3:first-child, 

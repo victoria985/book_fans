@@ -5,17 +5,12 @@ from django.contrib import messages
 from django.shortcuts import redirect 
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    books_count = models.Book.objects.count()
-    authors_count = models.Author.objects.count()
-    reviews_count = models.Review.objects.count()
-    users_count = models.get_user_model().objects.count()
-    
+def index(request):
+    # Gauname knygų sąrašą
+    books = models.Book.objects.all()  # Gauti visus objektus iš Book modelio
+
     context = {
-        'books_count': books_count,
-        'authors_count': authors_count,
-        'reviews_count': reviews_count,
-        'users_count': users_count,
+        'books': books,  # Perduodame knygų sąrašą į šabloną
     }
     return render(request, 'bookclub/index.html', context)
 

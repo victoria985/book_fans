@@ -1,9 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>This page is where you can find popular books and the latest authors...</h1>   
-<p>Below is the content related to books</p>
-<p>The most popular books!
-<p>Books that interested our readers!</p>
-<p>Books that are already being prepared for release!!!</p>
+{% load static i18n %}
+
+<h2>The most popular books! Books that interested our readers...</h2>
+<div class="image-container">
+    <img src="{% static 'img/book_foto5.jpg' %}" alt="Book_name5">
+    <img src="{% static 'img/book_foto6.jpg' %}" alt="Book_name6">
+    <img src="{% static 'img/book_foto4.jpg' %}" alt="Book_name4">
+    <img src="{% static 'img/book_foto16.jpg' %}" alt="Book_name16">
+    <img src="{% static 'img/book_foto17.jpg' %}" alt="Book_name17">
+    <img src="{% static 'img/book_foto18.jpg' %}" alt="Book_name18">
+    <img src="{% static 'img/book_foto19.jpg' %}" alt="Book_name19">
+    <img src="{% static 'img/book_foto20.jpg' %}" alt="Book_name20">
+    <img src="{% static 'img/book_foto21.jpg' %}" alt="Book_name21">
+    <img src="{% static 'img/book_foto22.jpg' %}" alt="Book_name22">
+</div>
+
+<h3>Books that are already being prepared for release!!!</h3>
+<div class="image-container">
+    <img src="{% static 'img/book_foto7.jpg' %}" alt="Book_name7">
+    <img src="{% static 'img/book_foto8.jpg' %}" alt="Book_name8">
+    <img src="{% static 'img/book_foto9.jpg' %}" alt="Book_name9">
+    <img src="{% static 'img/book_foto10.jpg' %}" alt="Book_name10">
+    <img src="{% static 'img/book_foto11.jpg' %}" alt="Book_name11">
+    <img src="{% static 'img/book_foto12.jpg' %}" alt="Book_name12">
+    <img src="{% static 'img/book_foto13.jpg' %}" alt="Book_name13">
+    <img src="{% static 'img/book_foto14.jpg' %}" alt="Book_name14">
+    <img src="{% static 'img/book_foto15.jpg' %}" alt="Book_name15">
+</div>
+
 {% endblock %}
 
