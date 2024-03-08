@@ -1,11 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Genre List{% endblock title %}
+{% load static i18n %}  
+
+{% block title %}{% trans "genre list"|capfirst %}{% endblock title %}
+
 {% block content %}
-  <h1>Genre List</h1>
+  <h1>{% trans "genre list"|capfirst %}</h1>
   <ul>
     {% for genre in genre_list %}
       <li><a href="{% url 'genre_detail' pk=genre.pk %}">{{ genre.name }}</a></li>
     {% endfor %}
   </ul>
 {% endblock content %}
+
 

@@ -2,31 +2,31 @@
 {% block content %}
 {% load static i18n %}
 
-<h2>The most popular books! Books that interested our readers...</h2>
+<h3>{% trans "The most popular books! Books that interested our readers..."|capfirst %}</h2>
 <div class="image-container">
-    <img src="{% static 'img/book_foto5.jpg' %}" alt="Book_name5">
-    <img src="{% static 'img/book_foto6.jpg' %}" alt="Book_name6">
-    <img src="{% static 'img/book_foto4.jpg' %}" alt="Book_name4">
-    <img src="{% static 'img/book_foto16.jpg' %}" alt="Book_name16">
-    <img src="{% static 'img/book_foto17.jpg' %}" alt="Book_name17">
-    <img src="{% static 'img/book_foto18.jpg' %}" alt="Book_name18">
-    <img src="{% static 'img/book_foto19.jpg' %}" alt="Book_name19">
-    <img src="{% static 'img/book_foto20.jpg' %}" alt="Book_name20">
-    <img src="{% static 'img/book_foto21.jpg' %}" alt="Book_name21">
-    <img src="{% static 'img/book_foto22.jpg' %}" alt="Book_name22">
+    <img src="{% static 'img/book_foto5.jpg' %}" alt="{% trans "book_name5"|capfirst %}">
+    <img src="{% static 'img/book_foto6.jpg' %}" alt="{% trans "book_name6"|capfirst %}">
+    <img src="{% static 'img/book_foto4.jpg' %}" alt="{% trans "book_name4"|capfirst %}">
+    <img src="{% static 'img/book_foto16.jpg' %}" alt="{% trans "book_name16"|capfirst %}">
+    <img src="{% static 'img/book_foto17.jpg' %}" alt="{% trans "book_name17"|capfirst %}">
+    <img src="{% static 'img/book_foto18.jpg' %}" alt="{% trans "book_name18"|capfirst  %}">
+    <img src="{% static 'img/book_foto19.jpg' %}" alt="{% trans "book_name19"|capfirst %}">
+    <img src="{% static 'img/book_foto20.jpg' %}" alt="{% trans "book_name20"|capfirst %}">
+    <img src="{% static 'img/book_foto21.jpg' %}" alt="{% trans "book_name21"|capfirst %}">
+    <img src="{% static 'img/book_foto22.jpg' %}" alt="{% trans "book_name22"|capfirst %}">
 </div>
 
-<h3>Books that are already being prepared for release!!!</h3>
+<h4>{% trans "Books that are already being prepared for release!!!" %}</h3>
 <div class="image-container">
-    <img src="{% static 'img/book_foto7.jpg' %}" alt="Book_name7">
-    <img src="{% static 'img/book_foto8.jpg' %}" alt="Book_name8">
-    <img src="{% static 'img/book_foto9.jpg' %}" alt="Book_name9">
-    <img src="{% static 'img/book_foto10.jpg' %}" alt="Book_name10">
-    <img src="{% static 'img/book_foto11.jpg' %}" alt="Book_name11">
-    <img src="{% static 'img/book_foto12.jpg' %}" alt="Book_name12">
-    <img src="{% static 'img/book_foto13.jpg' %}" alt="Book_name13">
-    <img src="{% static 'img/book_foto14.jpg' %}" alt="Book_name14">
-    <img src="{% static 'img/book_foto15.jpg' %}" alt="Book_name15">
+    <img src="{% static 'img/book_foto7.jpg' %}" alt="{% trans "book_name7"|capfirst %}">
+    <img src="{% static 'img/book_foto8.jpg' %}" alt="{% trans "book_name8"|capfirst %}">
+    <img src="{% static 'img/book_foto9.jpg' %}" alt="{% trans "book_name9"|capfirst %}">
+    <img src="{% static 'img/book_foto10.jpg' %}" alt="{% trans "book_name10"|capfirst %}">
+    <img src="{% static 'img/book_foto11.jpg' %}" alt="{% trans "book_name11"|capfirst %}">
+    <img src="{% static 'img/book_foto12.jpg' %}" alt="{% trans "book_name12"|capfirst %}">
+    <img src="{% static 'img/book_foto13.jpg' %}" alt="{% trans "book_name13"|capfirst %}">
+    <img src="{% static 'img/book_foto14.jpg' %}" alt="{% trans "book_name14"|capfirst %}">
+    <img src="{% static 'img/book_foto15.jpg' %}" alt="{% trans "book_name15"|capfirst %}">
 </div>
 
 {% endblock %}

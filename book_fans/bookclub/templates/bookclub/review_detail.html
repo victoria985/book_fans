@@ -1,9 +1,16 @@
 {% extends "base.html" %}
-{% block title %}{{ block.super }} | Review: {{ review.comment }}{% endblock title %}
+{% load static i18n %}  
+
+{% block title %}
+  {{ block.super }} | {% trans "review"|capfirst %}: {{ review.comment }}
+{% endblock title %}
+
 {% block content %}
-<h1>Review</h1>
-<p>Comment: {{ review.comment }}</p>
-<p>Rating: {{ review.rating }}</p>
-<p>Book: {{ review.book }}</p>
-<p>User: {{ review.user }}</p>
+<h1>{% trans "review"|capfirst %}</h1>
+<p>{% trans "comment"|capfirst %}: {{ review.comment }}</p>
+<p>{% trans "rating"|capfirst %}: {{ review.rating }}</p>
+<p>{% trans "book"|capfirst %}: {{ review.book }}</p>
+<p>{% trans "user"|capfirst %}: {{ review.user }}</p>
 {% endblock content %}
+
+

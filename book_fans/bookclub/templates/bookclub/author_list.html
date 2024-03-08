@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+{% load static i18n %} 
+
 {% block title %}{{ block.super }} list{% endblock title %}
+
 {% block content %}
     {% if messages %}
         <ul class="messages">
@@ -8,10 +11,11 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <h1>Authors</h1>
+    <h1>{% trans "authors"|capfirst %}</h1> 
     <ul>
         {% for author in author_list %}
             <li><a href="{% url 'author_detail' pk=author.pk %}">{{ author.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock content %}
+

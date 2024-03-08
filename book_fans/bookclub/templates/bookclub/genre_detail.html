@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Genre Detail{% endblock title %}
+{% load static i18n %} 
+
+{% block title %}{% trans "genre detail"|capfirst %}{% endblock title %}
+
 {% block content %}
   <h1>{{ genre.name }}</h1>
-  <p>Number of books in this genre: {{ genre.book_set.count }}</p>
-  <p><a href="{% url 'genre_book_list' pk=genre.pk %}">View books in this genre</a></p>
+  <p>{% trans "number of books in this genre:"|capfirst %} {{ genre.book_set.count }}</p>
+  <p><a href="{% url 'genre_book_list' pk=genre.pk %}">{% trans "view books in this genre"|capfirst %}</a></p>
 {% endblock content %}
+
 

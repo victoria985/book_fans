@@ -10,29 +10,44 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1 class="nav">BookFans</h1> <!-- Pakeičiame iš header į tiesioginį h1 -->
-    <nav class="nav"> 
-        <ul> 
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'genre_list' %}">Genre</a></li>
-            <li><a href="{% url 'book_list' %}">Books</a></li>
-            <li><a href="{% url 'author_list' %}">Authors</a></li>
-            <li><a href="{% url 'review_list' %}">Review</a></li>
+    <header>
+        <h1>BookFans
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ redirect_to }}">
+                <select class="language" name="language" onchange="this.form.submit();">
+                    {% for lang in LANGUAGES %}
+                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                            {{ lang.1 }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </h1>
+    </header>
+ <h2>   
+    <nav class="nav">
+        <ul>
+            <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'genre_list' %}">{% trans "Genre" %}</a></li>
+            <li><a href="{% url 'book_list' %}">{% trans "Books" %}</a></li>
+            <li><a href="{% url 'author_list' %}">{% trans "Authors" %}</a></li>
+            <li><a href="{% url 'review_list' %}">{% trans "Review" %}</a></li>
         </ul>
     </nav>
+</h2>    
     <div class="messages">
         {% for message in messages %}
             <p class="message message-{{ message.tags }}">{{ message }}</p>
-        {% endfor %} 
-    </div>       
-    <main>{% block content %}{% endblock content %}</main> 
+        {% endfor %}
+    </div>
+    <main>{% block content %}{% endblock content %}</main>
     <footer>
         {% block footer %}{% endblock footer %}
         <p>&copy; PTU20 2024
             <a style="float:right;" href="https://www.pegasas.lt/" target="_blank"><img class="icon" src="{% static "img/Pegasas-logo_1_.webp" %}"></a>
             <a style="float:right;" href="https://www.facebook.com/knyguklubas/" target="_blank"><img class="icon" src="{% static "img/pegasas.jpg" %}"></a>
         </p>
-    </footer>        
-</body>
-</html>
+    </footer>
+
 

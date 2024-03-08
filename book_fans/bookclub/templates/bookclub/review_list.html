@@ -1,10 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Review List{% endblock title %}
+{% load static i18n %}  
+
+{% block title %}
+  {% trans "review list"|capfirst %}
+{% endblock title %}
+
 {% block content %}
-  <h1>Review List</h1>
+  <h1>{% trans "review list"|capfirst %}</h1>
   <ul>
     {% for review in review_list %}
-      <li><a href="{% url 'review_detail' pk=review.pk %}">Review {{ forloop.counter }}</a></li>
+      <li><a href="{% url 'review_detail' pk=review.pk %}">{% trans "review"|capfirst %} {{ forloop.counter }}</a></li>
     {% endfor %}
   </ul>
 {% endblock content %}
+

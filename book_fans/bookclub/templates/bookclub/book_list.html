@@ -1,5 +1,8 @@
 {% extends "base.html" %}
-{% block title %}{{ block.super }} list{% endblock title %}
+{% load static i18n %} 
+
+{% block title %}{{ block.super }} | {% trans "books"|capfirst %}{% endblock title %}
+
 {% block content %}
     {% if messages %}
         <ul class="messages">
@@ -8,11 +11,12 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <h1>Books</h1>
+    <h1>{% trans "books"|capfirst %}</h1> 
     <ul>
         {% for book in book_list %}
-            <li><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></li>
+            <li><a href="{% url 'book_detail' pk=book.pk %}">{% trans book.name|capfirst %}</a></li> 
         {% endfor %}
     </ul>
 {% endblock content %}
+
 

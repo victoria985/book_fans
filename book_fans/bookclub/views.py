@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponse
 from . import models 
+from django.urls import reverse
 from django.contrib import messages
 from django.shortcuts import redirect 
+from django.utils.translation import gettext_lazy as _
 
 
 def index(request):
-    # Gauname knygų sąrašą
     books = models.Book.objects.all()  # Gauti visus objektus iš Book modelio
 
     context = {
@@ -24,6 +25,10 @@ def author_list(request: HttpRequest) -> HttpResponse:
         'author_list': models.Author.objects.all(),
     })
 
+def get_success_url(self) -> str:
+    messages.success(self.request, _('project deleted successfully').capitalize())
+    return reverse('author_list')
+
 def genre_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'bookclub/genre_list.html', {
         'genre_list': models.Genre.objects.all(),
@@ -34,6 +39,9 @@ def genre_book_list(request, pk):
     books_in_genre = models.Book.objects.filter(genre=genre)
     return render(request, 'bookclub/genre_book_list.html', {'genre': genre, 'books_in_genre': books_in_genre})
 
+def get_success_url(self) -> str:
+    messages.success(self.request, _('project deleted successfully').capitalize())
+    return reverse('book_list')
 
 def review_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'bookclub/review_list.html', {

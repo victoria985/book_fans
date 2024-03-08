@@ -1,6 +1,10 @@
 {% extends "base.html" %}
-{% block title %}{{ block.super }} | {{ author.name }}{% endblock title %}
+{% load static i18n %} 
+
+{% block title %}{{ block.super }} | {% trans "author.name"|capfirst %}{% endblock title %}
+
 {% block content %}
-<h1>{{ author.name }}</h1>
-<p>Biography: {{ author.biography }}</p>
+    <h1>{% trans "author.name"|capfirst %}</h1> 
+    <p>{% trans "biography"|capfirst %}: {{ author.biography }}</p> 
 {% endblock content %}
+
