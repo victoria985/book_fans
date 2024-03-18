@@ -28,6 +28,7 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ['book__name', 'user__username']  
 
 
+
 admin.site.register(models.Book, BookAdmin)
 admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.Genre, GenreAdmin)

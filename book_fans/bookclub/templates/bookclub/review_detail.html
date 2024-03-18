@@ -9,8 +9,19 @@
 <h1>{% trans "review"|capfirst %}</h1>
 <p>{% trans "comment"|capfirst %}: {{ review.comment }}</p>
 <p>{% trans "rating"|capfirst %}: {{ review.rating }}</p>
-<p>{% trans "book"|capfirst %}: {{ review.book }}</p>
-<p>{% trans "user"|capfirst %}: {{ review.user }}</p>
+<p>{% trans "book"|capfirst %}: <a href="{{ review.book.get_absolute_url }}">{{ review.book.name }}</a></p>
+<p>{% trans "user"|capfirst %}: {{ review.user.username }}</p>
+
+{% if comments %}
+  <h2>{% trans "comments"|capfirst %}</h2>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.text }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% endblock content %}
+
+
 
 

@@ -5,6 +5,11 @@
 
 {% block content %}
     <h1>{% trans "author.name"|capfirst %}</h1> 
+    {% if author.photo %}
+        <img src="{{ author.photo.url }}" alt="{{ author.name }} Photo">
+    {% endif %}
     <p>{% trans "biography"|capfirst %}: {{ author.biography }}</p> 
 {% endblock content %}
+
+
 

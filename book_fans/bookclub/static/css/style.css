@@ -11,6 +11,29 @@ body {
     min-height: 100vh;
 }
 
+header {
+    background-color: #969992;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0.5rem;
+}
+
+header ul.nav {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-block: 0.5rem;
+    margin-left: 1rem;
+    padding-inline: 0;
+    gap: 0.5rem;
+}    
+
 /*header {
    /* display: flex;
     justify-content: space-between; Elementai pasiskirs vienas prieš kitą 
@@ -18,44 +41,23 @@ body {
     margin-bottom: 1rem; */
 
 
- header .logo {
+
+ /*header .logo {
     font-size: 24px;
     font-weight: 700;
     padding: 0.5rem;
 }
 
 header form select {
+    display: flex;
     margin-left: 73rem; /* Paslenkame į dešinę, kad būtų kairėje pusėje */
-    margin-right: auto; /* Papildomas atstumas nuo kairiojo krašto */
-    font-size: 60%;
-}
+   /* margin-right: auto; /* Papildomas atstumas nuo kairiojo krašto 
+    font-size: 60%; */
+
 
 header h1 {
     margin: 0;
     width: 100%; /* pritaikome plotį */
-}
-
-nav.nav ul {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav.nav ul li {
-    margin-right: 30px;
-}
-
-nav.nav ul li a {
-    padding: 7px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 3px;
-}
-
-nav.nav ul li a:hover {
-    background-color: #0056b3;
 }
 
 .spacer {

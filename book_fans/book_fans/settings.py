@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bookclub',
-    'user_profile',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,6 +82,7 @@ DATABASES = {
     }
 }
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -108,14 +108,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
-    (LANGUAGE_CODE, 'US English'),
+    ('en-us', 'US English'),
     ('lt', 'Lietuvių'),
-    ('ru', 'Русский'),
 ]
 
 TIME_ZONE = 'Europe/Vilnius'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -132,6 +133,8 @@ MEDIA_ROOT = BASE_DIR.joinpath(MEDIA_URL)
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
 
 try:
     from .local_settings import *
