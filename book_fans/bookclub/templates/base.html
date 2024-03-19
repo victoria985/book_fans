@@ -14,15 +14,15 @@
         <h1>BookFans
             <ul class="nav">
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url "user_detail_current" %}">{{ user }}</a></li>
+                <li><a href="{% url 'user_detail' %}">{{ user }}</a></li>
                     {% if user.is_superuser or user.is_staff %}
-                        <li><a href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a></li>
+                        <li><a href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a></li>
                     {% endif %}
-                    <li><form method="post" action="{% url "logout" %}">{% csrf_token %}
+                    <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}
                     <button type="submit">{% trans "log out"|capfirst %}</button></form></li>
                 {% else %}
-                    <li><a href="{% url "login" %}">{% trans "log in"|capfirst %}</a></li>
-                    <li><a href="{% url "signup" %}">{% trans "sign up"|capfirst %}</a></li>
+                    <li><a href="{% url 'login' %}">{% trans "log in"|capfirst %}</a></li>
+                    <li><a href="{% url 'signup' %}">{% trans "sign up"|capfirst %}</a></li>
                 {% endif %}
             </ul>
             <form action="{% url 'set_language' %}" method="post">
@@ -36,8 +36,7 @@
                     {% endfor %}
                 </select>
             </form>
-        </h1>
-    </header>
+        </h1>   
     <nav class="nav">
         <ul>
             <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
@@ -47,6 +46,7 @@
             <li><a href="{% url 'review_list' %}">{% trans "Review" %}</a></li>
         </ul>
     </nav>
+   </header>   
     <div class="messages">
         {% for message in messages %}
             <p class="message message-{{ message.tags }}">{{ message }}</p>

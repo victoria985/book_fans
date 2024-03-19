@@ -1,168 +1,118 @@
-body {
-    background-color: #cccccc;
-    background-image: url('/static/img/pilkas_tepliotas.jpg');
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 18px;
-    color: #171211;
-    display: flex;
-    height: 160px;
-    flex-direction: column;
-    margin: 0; padding: 0;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #969992;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-header .logo {
-    font-size: 24px;
-    font-weight: 700;
-    padding: 0.5rem;
-}
-
-header ul.nav {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    margin-block: 0.5rem;
-    margin-left: 1rem;
-    padding-inline: 0;
-    gap: 0.5rem;
-}    
-
-/*header {
-   /* display: flex;
-    justify-content: space-between; Elementai pasiskirs vienas prieš kitą 
-    align-items: center; /* Elementai bus horizontaliai centruoti 
-    margin-bottom: 1rem; */
-
-
-
- /*header .logo {
-    font-size: 24px;
-    font-weight: 700;
-    padding: 0.5rem;
-}
-
-header form select {
-    display: flex;
-    margin-left: 73rem; /* Paslenkame į dešinę, kad būtų kairėje pusėje */
-   /* margin-right: auto; /* Papildomas atstumas nuo kairiojo krašto 
-    font-size: 60%; */
-
-
-header h1 {
+/* Resetuoja pagrindinius stilius, kad visi elementai turėtų vienodą pagrindą */
+* {
     margin: 0;
-    width: 100%; /* pritaikome plotį */
-}
-
-.spacer {
-    flex-grow: 1;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    background-color: #bbbbbb;
-    border-bottom: 1px solid #888888;
-    padding: 1rem;
-    margin: 1.2rem 0;
+    padding: 0;
     box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
 }
 
-h2 {
-    padding-bottom: 15px;
-    margin-top: 0;
-    justify-content: center;
+/* Nustato stilius pagrindiniam konteineriui */
+body {
+    font-family: Arial, sans-serif; /* pasirinktas šriftas */
+    font-size: 18px;
+    background-color: #f9f9f9; /* fono spalva */
+    color: #333; /* teksto spalva */
+    line-height: 0.6; /* eilučių aukštis */
 }
 
-h3 {
-    padding-top: 15px;
+/* Stilius antraštės */
+header {
+    background-color: #333; /* antraštės fono spalva */
+    color: #fff; /* antraštės teksto spalva */
+    max-height: 70px; /* Keiskite plotį pagal poreikį */
+    margin: 0 auto; /* Centruoti viršutinę dalį */
+    width: 100%;
+    position: fixed;   
+    padding: 1rem; /* tarpas tarp turinio ir krašto */
 }
 
-h4 {
-    padding-top: 15px;
+/* Stilius pagrindinio meniu */
+.nav {
+    list-style: none; /* paslėpti sąrašo punktų ženklus */
+    float: right; /* Išdėsto meniu dešinėje pusėje */
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+    gap: 7;
+    margin-right: 0; /* Naikina tarpą nuo dešinio krašto */
 }
 
+.nav li {
+    display: inline; /* išdėsto meniu horizontaliai */
+}
+
+.nav a {
+    color: #fff; /* Pakeiskite į norimą teksto spalvą */
+    text-decoration: none; /* Pašalinkite nuorodų paryškinimą, jei nereikia */
+    padding: 0.5rem 1rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
+    background-color: #333; /* Pridėkite foninę spalvą mygtukui */
+    border-radius: 5px; /* Pridėkite šešėlį, kad mygtukas būtų pastebimas */
+}
+
+/* Naujas stilius kalbų perjungimo mygtukui */
+.language-form {
+    float: right;
+    margin: 0;
+}
+
+/* Naujas stilius prisijungimo ir registracijos mygtukams */
+.auth-buttons {
+    float: right;
+    margin-top: 0px;
+}
+
+/* Stilius pagrindinio turinio srities */
+main {
+    padding: 0.5rem; /* tarpas tarp turinio ir krašto */
+}
+
+/* Stilius rėmelio aplink paveikslėlius */
 .image-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    display: flex; /* Naudoti flexbox modelį */
+    justify-content: center; /* Horizontaliai centravimas */
+    align-items: center; /* Vertikaliai centravimas */
+    width: 100%; /* Pasirinkite plotį, kuris jums tinka */
+    height: 236px; /* Pasirinkite aukštį, kuris jums tinka */
+    border: 5px solid #ccc; /* Pridėkite rėmelį aplink paveikslėlius */
+    padding: 10px; /* Pridėkite įpolį aplink paveikslėlius */
+    margin-bottom: 15px; /* Pridėkite tarpą po image-container */
 }
 
 .image-container img {
-    width: 100px;
-    height: auto;
+    width: 110px; /* paveikslėlių plotis */
+    height: auto; /* automatiškai keičia aukštį proporcingai */
+    margin: 0.5rem; /* tarpas tarp paveikslėlių */
 }
 
-h1:first-child, h2:first-child, h3:first-child, 
-h4:first-child, h5:first-child, h6:first-child {
-    margin-top: 0;
+.content-section {
+    margin-top: 5%; /* Pridėkite norimą procentinį atstumą nuo viršaus */
+    margin-bottom: 5%; /* Pridėkite norimą procentinį atstumą nuo apačios */
 }
 
-footer p {
-    color: #cccccc;
+/* Stilius porų kuriantiems paveikslėliams */
+h3, h4 {
+    margin-top: 1.5rem; /* tarpas tarp pavadinimo ir krašto */
+    text-align: center; /* centravimas */
 }
 
-footer a {
-    color: #66aaff;
+/* Pridėkite stilių norimam atstumui tarp teksto ir paveikslėlių, jei reikia */
+.content-section h3,
+.content-section h4 {
+    margin-bottom: 10px; /* Atstumas nuo teksto iki paveikslėlių */
 }
 
-footer a:hover {
-    color: #77bbff;
-}
-
-.message, ul.errorlist {
-    padding: 0.5rem;
-    margin: 0;
-    border-bottom: 1px solid #888888;
-}
-
-.message-error, ul.errorlist {
-    background-color: #ffaaaa;
-}
-
-main form label {
-    display: inline-block;
-    min-width: 20vw;
-    font-size: 120%;
-}
-
-main form input, 
-main form textarea, 
-main form select,
-main form button {
-    font-size: 120%;
-}
-
-main form .helptext {
-    display: block;
-    font-size: 90%;
-}
-
-p, main ul {
-    padding: 0 0.5rem;
-    margin: 0.5rem 0;
-}
-
-main ul li {
-    border-bottom: 1px solid #999999;
-}
-
-main {
-    flex-grow: 2;
-}
-
+/* Stilius priešdėlio nuorodom */
 footer {
-    background-color: #888888;
+    background-color: #333; /* fono spalva */
+    color: #fff; /* teksto spalva */
+    padding: 1rem; /* tarpas tarp turinio ir krašto */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center; /* centravimas */
 }
 
 footer .icon {
-    max-height: 20px;
+    max-height: 43px;
     padding: 0.5rem;
 }
+
