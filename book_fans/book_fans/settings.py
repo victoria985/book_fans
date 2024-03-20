@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bookclub',
-    'user_profile',
+    'user_profile_V2',
     'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',

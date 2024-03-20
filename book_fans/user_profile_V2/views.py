@@ -15,28 +15,28 @@ def signup(request: HttpRequest) -> HttpResponse:
             return redirect("login")
     else:
         form = forms.CreateUserForm()
-    return render(request, 'user_profile/signup.html', {
+    return render(request, 'user_profileV2/signup.html', {
         'form': form,
     })
 
 @login_required
 def user_detail(request: HttpRequest, username: str | None = None) -> HttpResponse:
     user = request.user if not username else get_object_or_404(get_user_model(), username=username)  # Pakeičiame User į get_user_model()
-    return render(request, 'user_profile/user_detail.html', {
+    return render(request, 'user_profileV2/user_detail.html', {
         'object': user,
     })
 
 @login_required
 def user_update(request):
     if request.method == "POST":
-        form = forms.ProfileForm(request.POST, instance=request.user.userprofile)
+        form = forms.ProfileForm(request.POST, instance=request.user.userprofilev2)
         if form.is_valid():
             form.save()
             messages.success(request, "Your profile has been updated.")
             return redirect("user_detail")
     else:
-        form = forms.ProfileForm(instance=request.user.userprofile)
-    return render(request, "user_profile/user_update.html", {"form": form})
+        form = forms.ProfileForm(instance=request.user.userprofilev2)
+    return render(request, "user_profileV2/user_update.html", {"form": form})
 
 @login_required
 def user_delete(request):
@@ -44,5 +44,4 @@ def user_delete(request):
         request.user.delete()
         messages.success(request, "Your account has been deleted.")
         return redirect("index")  # Redirect to the homepage after deletion
-    return render(request, "user_profile/user_delete.html")
-
+    return render(request, "user_profileV2/user_delete.html")

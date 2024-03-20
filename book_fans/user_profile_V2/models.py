@@ -1,4 +1,3 @@
-from typing import Iterable
 from django.db import models
 from tinymce.models import HTMLField
 from django.contrib.auth import get_user_model
@@ -6,16 +5,14 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from PIL import Image
 
-
-class UserProfile(models.Model):
+class UserProfileV2(models.Model):  # Pakeistas UserProfile į UserProfileV2
     user = models.OneToOneField(get_user_model(), verbose_name=_("user"), on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=20, null=True, blank=True)
     picture = models.ImageField(_("picture"), upload_to='user_pictures/', blank=True, null=True)
-    description = HTMLField(_("description"), max_length=10000, blank=True, null=True)  # Pridėtas django-tinymce laukas
+    description = HTMLField(_("description"), max_length=10000, blank=True, null=True)
 
     class Meta:
-        verbose_name = _("profile")
-        verbose_name_plural = _("profiles")
+        verbose_name = _("user profile V2")  # Pakeistas verbose_name į "user profile V2"
+        verbose_name_plural = _("user profiles V2")  # Pakeistas verbose_name_plural į "user profiles V2"
 
     def __str__(self):
         return f"{self.user}"
@@ -23,7 +20,7 @@ class UserProfile(models.Model):
     def get_absolute_url(self):
         return reverse("user_detail_current", kwargs={"pk": self.pk})
 
-    def save(self, *args, **kwargs) -> None:
+    def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.picture:
             image = Image.open(self.picture.path)
@@ -38,7 +35,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     book = models.ForeignKey('bookclub.Book', on_delete=models.CASCADE, verbose_name=_("book"), null=True, blank=True)
     review = models.ForeignKey('bookclub.Review', on_delete=models.CASCADE, verbose_name=_("review"), null=True, blank=True, related_name='user_comments')
-    description = HTMLField(_("description"), max_length=10000, blank=True, null=True)  # Pridėtas django-tinymce laukas
+    description = HTMLField(_("description"), max_length=10000, blank=True, null=True)
 
     class Meta:
         verbose_name = _("comment")
@@ -46,5 +43,4 @@ class Comment(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.text[:100]  
-    
+        return self.text[:100]
