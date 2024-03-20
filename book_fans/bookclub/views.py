@@ -75,6 +75,7 @@ def read_book(request, book_id):
         messages.success(request, f"You have successfully marked '{book.name}' as read.")
     return redirect('book_list')
 
+@login_required
 def book_create(request):
     if request.method == 'POST':
         form = forms.BookForm(request.POST)
@@ -86,6 +87,7 @@ def book_create(request):
         form = forms.BookForm()
     return render(request, 'bookclub/book_create.html', {'form': form})
 
+@login_required
 def author_create(request):
     if request.method == 'POST':
         form = forms.AuthorForm(request.POST)
@@ -97,6 +99,7 @@ def author_create(request):
         form = forms.AuthorForm()
     return render(request, 'bookclub/author_create.html', {'form': form})
 
+@login_required
 def review_create(request):
     if request.method == 'POST':
         form = forms.ReviewForm(request.POST)
@@ -108,6 +111,7 @@ def review_create(request):
         form = forms.ReviewForm()
     return render(request, 'bookclub/review_create.html', {'form': form})
 
+@login_required
 def book_delete(request, pk):
     book = get_object_or_404(models.Book, pk=pk)
     if request.method == 'POST':
@@ -116,6 +120,7 @@ def book_delete(request, pk):
         return redirect('book_list')
     return render(request, 'bookclub/book_delete.html', {'book': book})
 
+@login_required
 def author_delete(request, pk):
     author = get_object_or_404(models.Author, pk=pk)
     if request.method == 'POST':
@@ -124,6 +129,7 @@ def author_delete(request, pk):
         return redirect('author_list')
     return render(request, 'bookclub/author_delete.html', {'author': author})
 
+@login_required
 def review_delete(request, pk):
     review = get_object_or_404(models.Review, pk=pk)
     if request.method == 'POST':

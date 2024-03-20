@@ -1,5 +1,6 @@
 from typing import Iterable
 from django.db import models
+from tinymce.models import HTMLField
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -8,9 +9,9 @@ from PIL import Image
 
 class UserProfile(models.Model):
     user = models.OneToOneField(get_user_model(), verbose_name=_("user"), on_delete=models.CASCADE)
-    birth_date = models.DateField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     picture = models.ImageField(_("picture"), upload_to='user_pictures/', blank=True, null=True)
+    description = HTMLField(_("description"), max_length=10000, blank=True, null=True)  # Pridėtas django-tinymce laukas
 
     class Meta:
         verbose_name = _("profile")
@@ -27,7 +28,7 @@ class UserProfile(models.Model):
         if self.picture:
             image = Image.open(self.picture.path)
             if image.size[0] > 400 or image.size[1] > 300:
-                image.thumbnail((400, 300))  #pakeista resize i thumbnail del paveikslelio formos issaugojimo kad nesikeistu formatas
+                image.thumbnail((400, 300))
                 image.save(self.picture.path)
 
 
@@ -37,6 +38,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     book = models.ForeignKey('bookclub.Book', on_delete=models.CASCADE, verbose_name=_("book"), null=True, blank=True)
     review = models.ForeignKey('bookclub.Review', on_delete=models.CASCADE, verbose_name=_("review"), null=True, blank=True, related_name='user_comments')
+    description = HTMLField(_("description"), max_length=10000, blank=True, null=True)  # Pridėtas django-tinymce laukas
 
     class Meta:
         verbose_name = _("comment")
@@ -45,3 +47,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text[:100]  
+    
