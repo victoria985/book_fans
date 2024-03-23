@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% load static i18n %} 
-
 {% block title %}{{ block.super }} | {% trans "author.name"|capfirst %}{% endblock title %}
-
 {% block content %}
     <h1>{% trans "author.name"|capfirst %}</h1> 
     {% if author.photo %}
         <img src="{{ author.photo.url }}" alt="{{ author.name }} Photo">
     {% endif %}
     <p>{% trans "biography"|capfirst %}: {{ author.biography }}</p> 
+    <div class="buttons">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'author_delete' author.pk %}">{% trans "Delete Author" %}</a>
+            <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "author_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+        {% endif %}
+    </div>    
 {% endblock content %}
 
 

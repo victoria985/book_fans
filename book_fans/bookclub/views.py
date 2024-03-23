@@ -1,30 +1,79 @@
-from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from . import models, forms 
-from django.urls import reverse
 from django.contrib import messages
-from django.shortcuts import redirect 
-from django.utils.translation import gettext_lazy as _
+from django.views import generic
 
 
-def index(request):
-    books = models.Book.objects.all()  # Gauti visus objektus iš Book modelio
+class AuthorListView(generic.ListView):
+    model = models.Author
+    template_name = 'bookclub/author_list.html'
+    paginate_by = 5
 
-    context = {
-        'books': books,  # Perduodame knygų sąrašą į šabloną
-    }
-    return render(request, 'bookclub/index.html', context)
+    def get_queryset(self):
+        return models.Author.objects.all()
 
-def book_list(request: HttpRequest) -> HttpResponse:
-    return render(request, 'bookclub/book_list.html', {
-        'book_list': models.Book.objects.all(),
-    })
+class BookListView(generic.ListView):
+    model = models.Book
+    template_name = 'bookclub/book_list.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return models.Book.objects.all()
+
+class ReviewListView(generic.ListView):
+    model = models.Review
+    template_name = 'bookclub/review_list.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return models.Review.objects.all()
 
 def author_list(request: HttpRequest) -> HttpResponse:
-    return render(request, 'bookclub/author_list.html', {
-        'author_list': models.Author.objects.all(),
-    })
+    author_list = models.Author.objects.all()
+    paginator = Paginator(author_list, 13) 
+    page_number = request.GET.get('page')
+    try:
+        authors = paginator.page(page_number)
+    except PageNotAnInteger:
+        authors = paginator.page(1)
+    except EmptyPage:
+        authors = paginator.page(paginator.num_pages)
+    return render(request, 'bookclub/author_list.html', {'authors': authors})
+
+def book_list(request: HttpRequest) -> HttpResponse:
+    book_list = models.Book.objects.all()
+    paginator = Paginator(book_list, 13)  
+    page_number = request.GET.get('page')
+    try:
+        books = paginator.page(page_number)
+    except PageNotAnInteger:
+        books = paginator.page(1)
+    except EmptyPage:
+        books = paginator.page(paginator.num_pages)
+    return render(request, 'bookclub/book_list.html', {'books': books})
+
+def review_list(request: HttpRequest) -> HttpResponse:
+    review_list = models.Review.objects.all()
+    paginator = Paginator(review_list, 15)  
+    page_number = request.GET.get('page')
+    try:
+        reviews = paginator.page(page_number)
+    except PageNotAnInteger:
+        reviews = paginator.page(1)
+    except EmptyPage:
+        reviews = paginator.page(paginator.num_pages)
+    return render(request, 'bookclub/review_list.html', {'reviews': reviews})
+
+def index(request):
+    books = models.Book.objects.all()  
+
+    context = {
+        'books': books,  
+    }
+    return render(request, 'bookclub/index.html', context)
 
 def genre_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'bookclub/genre_list.html', {
@@ -35,11 +84,6 @@ def genre_book_list(request, pk):
     genre = get_object_or_404(models.Genre, pk=pk)
     books_in_genre = models.Book.objects.filter(genre=genre)
     return render(request, 'bookclub/genre_book_list.html', {'genre': genre, 'books_in_genre': books_in_genre})
-
-def review_list(request: HttpRequest) -> HttpResponse:
-    return render(request, 'bookclub/review_list.html', {
-        'review_list': models.Review.objects.all(),
-    })
 
 def book_detail(request: HttpRequest, pk:int) -> HttpResponse:
     return render(request, 'bookclub/book_detail.html', {
@@ -63,17 +107,6 @@ def review_detail(request, pk:int) -> HttpResponse:
         'review': review,
         'comments': comments,
     })
-
-def read_book(request, book_id):
-    user = request.user
-    book = get_object_or_404(models.Book, id=book_id)
-    
-    if user.read_books.filter(id=book_id).exists():
-        messages.info(request, f"You have already read the book '{book.name}'. Choose another one from the list.")
-    else:
-        user.read_books.add(book)
-        messages.success(request, f"You have successfully marked '{book.name}' as read.")
-    return redirect('book_list')
 
 @login_required
 def book_create(request):

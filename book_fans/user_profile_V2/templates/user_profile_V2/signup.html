@@ -1,10 +1,22 @@
 {% extends "base.html" %}{% load i18n %}
-{% block title %}{% trans "signup for"|capfirst %} {{ block.super }}{% endblock title %}
+{% block title %}{% trans "signup"|capfirst %}{{ block.super }}{% endblock title %}
 {% block content %}
-<h1>{% trans "signup for"|capfirst %} BookFans</h1>
-<form method="post" action="{{ request.path }}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p><button type="submit">{% trans "register"|capfirst %}</button></p>
-</form>
+<div class="container">
+    <h5>{% trans "Nice to see you here, please fill out the registration form!" %}</h5>
+    <div class="signup-container">
+        <h2 class="form-heading">{% trans "signup"|capfirst %} BookFans</h2>
+        <form method="post" action="{{ request.path }}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% trans "register"|capfirst %}</button>
+            <p>{% trans "We wish you good emotions, visiting our page!" %}</p>
+        </form>
+    </div>
+    <p>{% trans "We wish you good emotions, visiting our page!" %}</p>
+    <div class="login-container">
+        <h2 class="form-heading">{% trans "already a member?"|capfirst %}</h2>
+        <p>{% trans "login to your account"|capfirst %}</p>
+        <a href="{% url 'login' %}" class="btn">{% trans "log in"|capfirst %}</a>
+    </div>
+</div>
 {% endblock content %}

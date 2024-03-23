@@ -1,18 +1,20 @@
-{% extends 'base.html' %}{% load i18n %}
-{% block title %}{% trans "log in to"|capfirst %} {{ block.super }}{% endblock title %}
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% trans "login"|capfirst %}{{ block.super }}{% endblock title %}
 {% block content %}
-<h1>{% trans "log in to"|capfirst %} BookFans</h1>
-{% if form.errors %}
-<p class="message message-error">{% trans "Log in error. Please try again." %}</p>
-{% endif %}
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-{{ form.as_p }}
-{% if request.GET.next and '/accounts/' not in request.GET.next %}
-    <input type="hidden" name="next" value="{{ request.GET.next }}">
-{% endif %}
-<p><button type="submit">{% trans "log in"|capfirst %}</button></p>
-</form>
-<p><a href="{% url 'password_reset' %}">{% trans "forgot password?"|capfirst %}</a></p>
-<p>{% trans "If you do not have an account, please" %} <a href="{% url 'signup' %}">{% trans "sign up" %}</a>.
+<div class="container">
+    <h4>{% trans "Welcome back to BookFans!" %}</h4>
+    <div class="login-container">
+        <h2 class="form-heading">{% trans "login"|capfirst %} BookFans</h2>
+        <form method="post" action="{{ request.path }}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% trans "log in"|capfirst %}</button>
+        </form>
+    </div>
+    <div class="signup-container">
+        <h2 class="form-heading">{% trans "You don't have an account, please register..."|capfirst %}</h2>
+        <p>{% trans "create an account"|capfirst %}</p>
+        <a href="{% url 'signup' %}" class="btn">{% trans "sign up"|capfirst %}</a>
+    </div>
+</div>
 {% endblock content %}

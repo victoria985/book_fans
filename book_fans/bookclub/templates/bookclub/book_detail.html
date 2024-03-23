@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% load static i18n %} 
-
 {% block title %}{{ block.super }} | {% trans book.name|capfirst %}{% endblock title %}
-
 {% block content %}
     <h1>{% trans book.name %}</h1> 
     <p>{% trans "author"|capfirst %}: {{ book.author.name }}</p> 
     <p>{% trans "genre"|capfirst %}: {{ book.genre.name }}</p>
     <p>{% trans "publication year"|capfirst %}: {{ book.publication_year }}</p> 
     <p>{% trans "description"|capfirst %}: {{ book.description }}</p> 
+    <div class="buttons">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'book_delete' book.pk %}">{% trans "Delete Book" %}</a>
+            <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "book_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+        {% endif %}
+    </div>    
 {% endblock content %}

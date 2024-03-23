@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static i18n %}  
+{% block title %}
+  {% trans "review list"|capfirst %}
+{% endblock title %}
+{% block content %}
+  <h1>{% trans "comment list"|capfirst %}</h1>
+  <ul>
+    {% for comment in comment_list %}
+      <li><a href="{% url 'comment_detail' pk=comment.pk %}">{% trans "comment"|capfirst %} {{ forloop.counter }}</a></li>
+    {% endfor %}
+  </ul>
+{% include "user_profile_V2/inc/paginator.html" %} 
+{% endblock content %}

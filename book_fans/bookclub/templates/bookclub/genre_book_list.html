@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static i18n %}  
-
 {% block title %}Books in {{ genre.name }}{% endblock title %}
-
 {% block content %}
     <h1>{% trans "books in"|capfirst %} {{ genre.name }}</h1>  
     <ul>
@@ -10,5 +8,10 @@
             <li><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></li>
         {% endfor %}
     </ul>
+    <div class="buttons">
+        {% if request.user.is_authenticated %}
+            <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "genre_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+        {% endif %}
+    </div>    
 {% endblock content %}
 

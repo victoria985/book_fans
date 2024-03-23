@@ -8,56 +8,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}BookFans{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
     <header>
         <h1>BookFans
             <ul class="nav">
+                {% block user_links %}
                 {% if request.user.is_authenticated %}
                 <li><a href="{% url 'user_detail' %}">{{ user }}</a></li>
-                    {% if user.is_superuser or user.is_staff %}
-                        <li><a href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a></li>
-                    {% endif %}
-                    <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}
-                    <button type="submit">{% trans "log out"|capfirst %}</button></form></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">{% trans "log in"|capfirst %}</a></li>
-                    <li><a href="{% url 'signup' %}">{% trans "sign up"|capfirst %}</a></li>
+                {% if user.is_superuser or user.is_staff %}
+                <li><a href="{% url 'admin:index' %}">{% trans "admin"|capfirst %}</a></li>
                 {% endif %}
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">{% trans "log out"|capfirst %}</button>
+                    </form>
+                </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">{% trans "log in"|capfirst %}</a></li>
+                <li><a href="{% url 'signup' %}">{% trans "sign up"|capfirst %}</a></li>
+                {% endif %}
+                {% endblock %}
             </ul>
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_to }}">
                 <select class="language" name="language" onchange="this.form.submit();">
                     {% for lang in LANGUAGES %}
-                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
-                            {{ lang.1 }}
-                        </option>
+                    <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                        {{ lang.1 }}
+                    </option>
                     {% endfor %}
                 </select>
             </form>
-        </h1>   
-    <nav class="nav">
-        <ul>
-            <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
-            <li><a href="{% url 'genre_list' %}">{% trans "Genre" %}</a></li>
-            <li><a href="{% url 'book_list' %}">{% trans "Books" %}</a></li>
-            <li><a href="{% url 'author_list' %}">{% trans "Authors" %}</a></li>
-            <li><a href="{% url 'review_list' %}">{% trans "Review" %}</a></li>
-        </ul>
-    </nav>
-   </header>   
+        </h1>
+    </header> 
+        <main>   
+        <div class="nav.nav">
+            <ul>
+                {% block main_menu %}
+                <li><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'genre_list' %}">{% trans "Genre" %}</a></li>
+                <li><a href="{% url 'book_list' %}">{% trans "Books" %}</a></li>
+                <li><a href="{% url 'author_list' %}">{% trans "Authors" %}</a></li>
+                <li><a href="{% url 'review_list' %}">{% trans "Review" %}</a></li>
+                {% endblock %}
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
     <div class="messages">
         {% for message in messages %}
-            <p class="message message-{{ message.tags }}">{{ message }}</p>
+        <p class="message message-{{ message.tags }}">{{ message }}</p>
         {% endfor %}
     </div>
-    <main>{% block content %}{% endblock content %}</main>
     <footer>
         <p>&copy; PTU20 2024
             <a style="float:right;" href="https://www.pegasas.lt/" target="_blank"><img class="icon" src="{% static "img/Pegasas-logo_1_.webp" %}"></a>
             <a style="float:right;" href="https://www.facebook.com/knyguklubas/" target="_blank"><img class="icon" src="{% static "img/pegasas.jpg" %}"></a>
         </p>
     </footer>
+    {% block extra_scripts %}{% endblock %}
 </body>
 </html>

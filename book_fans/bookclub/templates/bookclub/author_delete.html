@@ -7,4 +7,9 @@
   {% csrf_token %}
   <button type="submit">Confirm</button>
 </form>
+<div class="buttons">
+  {% if request.user.is_authenticated %}
+      <a class="button" href="{% url "author_delete" author.pk %}">{% trans "delete"|capfirst %}</a>
+  {% endif %}
+</div>
 {% endblock content %}

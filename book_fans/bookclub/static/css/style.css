@@ -1,3 +1,4 @@
+
 /* Resetuoja pagrindinius stilius, kad visi elementai turėtų vienodą pagrindą */
 * {
     margin: 0;
@@ -8,17 +9,17 @@
 /* Nustato stilius pagrindiniam konteineriui */
 body {
     font-family: Arial, sans-serif; /* pasirinktas šriftas */
-    font-size: 18px;
-    background-color: #f9f9f9; /* fono spalva */
+    font-size: 16px;
+    background-color: #f9f9f9; /* fono spalva */   
     color: #333; /* teksto spalva */
-    line-height: 0.6; /* eilučių aukštis */
+    /*line-height: 0.6; /* eilučių aukštis */
 }
 
 /* Stilius antraštės */
 header {
     background-color: #333; /* antraštės fono spalva */
     color: #fff; /* antraštės teksto spalva */
-    max-height: 70px; /* Keiskite plotį pagal poreikį */
+    max-height: 85px; /* Keiskite plotį pagal poreikį */
     margin: 0 auto; /* Centruoti viršutinę dalį */
     width: 100%;
     position: fixed;   
@@ -29,40 +30,55 @@ header {
 .nav {
     list-style: none; /* paslėpti sąrašo punktų ženklus */
     float: right; /* Išdėsto meniu dešinėje pusėje */
-    font-size: 17px;
+    font-size: 19px;
     margin: 0;
     padding: 0;
-    gap: 7;
+    display: flex;
+    justify-content: flex-end; /* Meniu elementai bus nustatyti prie dešinio krašto */
+    align-items: center; /* Elementai bus vertikaliai centravimas */
     margin-right: 0; /* Naikina tarpą nuo dešinio krašto */
 }
 
 .nav li {
-    display: inline; /* išdėsto meniu horizontaliai */
+    display: inline;
+    margin-right: 5px; /* Pašaliname tarpą tarp meniu elementų */
+    line-height: 2.5;
+    margin-top: 5px;
 }
 
 .nav a {
     color: #fff; /* Pakeiskite į norimą teksto spalvą */
     text-decoration: none; /* Pašalinkite nuorodų paryškinimą, jei nereikia */
-    padding: 0.5rem 1rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
+    padding: 0.3rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
     background-color: #333; /* Pridėkite foninę spalvą mygtukui */
     border-radius: 5px; /* Pridėkite šešėlį, kad mygtukas būtų pastebimas */
 }
 
-/* Naujas stilius kalbų perjungimo mygtukui */
-.language-form {
-    float: right;
-    margin: 0;
+.nav\.nav {
+    list-style: none; /* paslėpti sąrašo punktų ženklus */
+    float: right; /* Išdėsto meniu dešinėje pusėje */
+    font-size: 19px;
+    margin: 60px;
+    padding: 0;
+    justify-content: flex-end; /* Meniu elementai bus nustatyti prie dešinio krašto */
+    margin-right: 0; /* Naikina tarpą nuo dešinio krašto */
+    text-decoration: none;
 }
 
-/* Naujas stilius prisijungimo ir registracijos mygtukams */
-.auth-buttons {
-    float: right;
-    margin-top: 0px;
+.nav\.nav li {
+    display: inline;
+    padding-inline-end: 3px;
+    margin-right: 3px; /* Pašaliname tarpą tarp meniu elementų */
+    line-height: 3.5;
+    float: right; 
 }
 
-/* Stilius pagrindinio turinio srities */
-main {
-    padding: 0.5rem; /* tarpas tarp turinio ir krašto */
+.nav\.nav li a{
+    color: #fff; /* Pakeiskite į norimą teksto spalvą */
+    text-decoration: none; /* Pašalinkite nuorodų paryškinimą, jei nereikia */
+    padding: 0.3rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
+    background-color: #333; /* Pridėkite foninę spalvą mygtukui */
+    border-radius: 5px; /* Pridėkite šešėlį, kad mygtukas būtų pastebimas */
 }
 
 /* Stilius rėmelio aplink paveikslėlius */
@@ -71,7 +87,7 @@ main {
     justify-content: center; /* Horizontaliai centravimas */
     align-items: center; /* Vertikaliai centravimas */
     width: 100%; /* Pasirinkite plotį, kuris jums tinka */
-    height: 236px; /* Pasirinkite aukštį, kuris jums tinka */
+    height: 225px; /* Pasirinkite aukštį, kuris jums tinka */
     border: 5px solid #ccc; /* Pridėkite rėmelį aplink paveikslėlius */
     padding: 10px; /* Pridėkite įpolį aplink paveikslėlius */
     margin-bottom: 15px; /* Pridėkite tarpą po image-container */
@@ -84,20 +100,22 @@ main {
 }
 
 .content-section {
-    margin-top: 5%; /* Pridėkite norimą procentinį atstumą nuo viršaus */
+    margin-top: 11%; /* Pridėkite norimą procentinį atstumą nuo viršaus */
     margin-bottom: 5%; /* Pridėkite norimą procentinį atstumą nuo apačios */
 }
 
 /* Stilius porų kuriantiems paveikslėliams */
-h3, h4 {
-    margin-top: 1.5rem; /* tarpas tarp pavadinimo ir krašto */
-    text-align: center; /* centravimas */
+h2, h3 {
+    text-align: left; /* centravimas */
+    font-size: 16px;
+    padding: 15px;
+    margin-left: 100px
 }
 
 /* Pridėkite stilių norimam atstumui tarp teksto ir paveikslėlių, jei reikia */
-.content-section h3,
-.content-section h4 {
-    margin-bottom: 10px; /* Atstumas nuo teksto iki paveikslėlių */
+.content-section h2,
+.content-section h3 {
+   margin-bottom: 1px; /* Atstumas nuo teksto iki paveikslėlių */
 }
 
 /* Stilius priešdėlio nuorodom */
@@ -107,6 +125,7 @@ footer {
     padding: 1rem; /* tarpas tarp turinio ir krašto */
     position: fixed;
     bottom: 0;
+    max-height: 65px; /* Keiskite plotį pagal poreikį */
     width: 100%;
     text-align: center; /* centravimas */
 }
@@ -115,4 +134,180 @@ footer .icon {
     max-height: 43px;
     padding: 0.5rem;
 }
+
+.user-content {
+    background-color: #ffffff7f;
+    border: 2px solid #999999;
+    border-radius: 1rem;
+    margin: 1rem;
+    overflow: auto;
+    max-width: max-content;
+}
+
+.language {
+    list-style: none; /* paslėpti sąrašo punktų ženklus */
+    float: left; /* Išdėsto meniu dešinėje pusėje */
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.3rem;
+}
+
+/* Stilius pagrindinio turinio srities */
+main {
+    padding: 2rem; /* tarpas tarp turinio ir krašto */
+}
+
+main ul {  /*prirasytas main ok*/
+    margin-top: 10px;
+    padding: 10px;
+    line-height: 1.5;
+}
+
+main h1 { /*prirasytas main ok*/
+    margin-top: 60px;
+    font-size: 35px;
+    font-family: "Lato";
+    padding: 10px;
+    position: relative; /* Nustato, kad kitos pozicijos bus nurodytos remiantis šio elemento pozicija */
+}
+
+main p {  /*prirasytas main*/
+    margin-top: 30px;
+    font-size: 18px;
+    font-family: "Lato";
+    line-height: normal;
+}
+
+
+
+.paginator {
+    /* Jūsų stiliai paginatoriaus mygtukams */
+    display: inline-flex; /* Norint, kad mygtukai būtų eilutėje */
+    gap: 7px;
+    padding: 7px 10px; /* Norint, kad mygtukai turėtų tarpus ir būtų matomi */
+    margin: 30px 5px; /* Norint, kad būtų tarpai tarp mygtukų */
+    list-style-type: none;
+    color: #333; /* Norint, kad teksto spalva būtų tamsi */
+}
+
+.paginator .current {
+    /* Stiliai dabartiniam puslapio mygtukui */
+    font-weight: bold; /* Norint, kad dabartinis puslapis būtų paryškintas */
+    background-color: #eee; /* Norint, kad dabartinio puslapio mygtukas būtų šviesus */
+}
+
+/* Stiliai prisijungimo forma */
+.login-container {
+    background-color: #fff; /* Fono spalva */
+    border-radius: 8px; /* Užapvalinti kraštai */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Šešėlis aplink konteinerį */
+    padding: 35px; /* Vidinis tarpas */
+    max-width: 900%; /* Maksimalus plotis */
+    margin: 10% auto; /* Centruoti vertikaliai ir horizontaliai */
+    float: left;
+    margin-left: 350px;
+}    
+
+.login-container p label {
+    width: 100% - 20px; /* Pilnas plotis atėmus padding */
+    padding: 10px; /* Vidinis tarpas */
+    margin-bottom: 15px; /* Tarpas tarp laukų */
+}
+
+.login-container button {
+    width: 30%; /* Pilnas plotis */
+    padding: 10px; /* Vidinis tarpas */
+    margin-top: 15px;
+    background-color: #007bff; /* Mygtuko spalva */
+    color: white; /* Teksto spalva */
+    border: none; /* Be rėmelio */
+    border-radius: 4px; /* Užapvalinti kraštai */
+    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
+}
+
+.login-container child4 {
+    margin-top: 1.3rem; /* tarpas tarp pavadinimo ir krašto */ 
+    text-align: center; /* centravimas */
+}
+
+.signup-container {
+    background-color: #fff; /* Fono spalva */
+    border-radius: 8px; /* Užapvalinti kraštai */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Šešėlis aplink konteinerį */
+    padding: 20px; /* Vidinis tarpas */
+    max-width: 400px; /* Maksimalus plotis */
+    margin: 10% auto; /* Centruoti vertikaliai ir horizontaliai */
+    float: right;
+    margin-right: 350px;
+}    
+
+.signup-container p {
+    font-size: 20px;
+    margin-top: 5px;
+    padding: 20px;
+}
+
+.signup-container a {
+    width: 45%; /* Pilnas plotis */
+    padding: 10px; /* Vidinis tarpas */
+    margin-top: 15px;
+    background-color: #007bff; /* Mygtuko spalva */
+    color: white; /* Teksto spalva */
+    border: none; /* Be rėmelio */
+    border-radius: 4px; /* Užapvalinti kraštai */
+    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
+    text-decoration: none; /* Pašalina bet kokį teksto dekoravimą, įskaitant pabraukimą */
+}
+
+.signup-container form p {
+    margin: 2px;
+    padding: 10px;
+}
+.signup-container form button {
+    width: 33%; /* Pilnas plotis */
+    padding: 8px; /* Vidinis tarpas */
+    margin-top: 25px;
+    float: right;
+    background-color: #007bff; /* Mygtuko spalva */
+    color: white; /* Teksto spalva */
+    border: none; /* Be rėmelio */
+    border-radius: 4px; /* Užapvalinti kraštai */
+    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
+    text-decoration: none; /* Pašalina bet kokį teksto dekoravimą, įsk*/
+} 
+   
+.login-container .btn {
+    width: 35%; /* Pilnas plotis */
+    padding: 8px; /* Vidinis tarpas */
+    float: right;
+    background-color: #007bff; /* Mygtuko spalva */
+    color: white; /* Teksto spalva */
+    border: none; /* Be rėmelio */
+    border-radius: 4px; /* Užapvalinti kraštai */
+    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
+    text-decoration: none; /* Pašalina bet kokį teksto dekoravimą, įska*/    
+}   
+    
+.login-container p {
+    margin-top: 1rem;/* tarpas tarp pavadinimo ir krašto */ 
+    margin-bottom: 1.3rem;
+    text-align: left; /* centravimas */
+    
+} 
+
+button, .button, ul.paginator li a, .content p a {
+    background-color: #d8d8d8;
+    border: 1px solid #666666;
+    border-bottom: 2px solid #004488;
+    padding: 0.5rem;
+    font-size: 75%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+button:hover, .button:hover, ul.paginator li a:hover {
+    background-color: #dfdfdf;
+    border-bottom: 2px solid #0055cc;
+}  
 

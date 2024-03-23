@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static i18n %}  
+{% block title %}
+  {% trans "create comment"|capfirst %}
+{% endblock title %}
+{% block content %}
+  <h1>{% trans "create comment"|capfirst %}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% trans "submit"|capfirst %}</button>
+  </form>
+{% endblock content %}

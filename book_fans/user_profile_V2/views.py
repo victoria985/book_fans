@@ -1,10 +1,21 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model  # Pakeičiame User į get_user_model
+from django.contrib.auth import get_user_model  
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
-from . import forms
+from django.views import generic
+from . import forms, models
+
+
+class CommentListView(generic.ListView):
+    model = models.Comment
+    template_name = 'bookclub/comment_list.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return models.Comment.objects.all()
+
 
 def signup(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
@@ -15,14 +26,14 @@ def signup(request: HttpRequest) -> HttpResponse:
             return redirect("login")
     else:
         form = forms.CreateUserForm()
-    return render(request, 'user_profileV2/signup.html', {
+    return render(request, 'user_profile_V2/signup.html', {
         'form': form,
     })
 
 @login_required
 def user_detail(request: HttpRequest, username: str | None = None) -> HttpResponse:
-    user = request.user if not username else get_object_or_404(get_user_model(), username=username)  # Pakeičiame User į get_user_model()
-    return render(request, 'user_profileV2/user_detail.html', {
+    user = request.user if not username else get_object_or_404(get_user_model(), username=username)  
+    return render(request, 'user_profileV_2/user_detail.html', {
         'object': user,
     })
 
@@ -43,5 +54,5 @@ def user_delete(request):
     if request.method == "POST":
         request.user.delete()
         messages.success(request, "Your account has been deleted.")
-        return redirect("index")  # Redirect to the homepage after deletion
+        return redirect("index")  
     return render(request, "user_profileV2/user_delete.html")
