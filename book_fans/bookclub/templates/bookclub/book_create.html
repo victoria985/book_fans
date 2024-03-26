@@ -2,13 +2,15 @@
 {% block title %}{% trans "create a book at"|capfirst %} {{ block.super }}{% endblock title %}
 {% block content %}
 <h1>{% trans "create a book"|capfirst %}</h1>
-<form method="post" action="{{ request.path }}">
+<form method="post" action="{{ request.path }}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <div class="buttons">
         {% if request.user.is_authenticated %}
+            <button type="submit" class="button">{% trans "create"|capfirst %}</button>
             <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "book_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
         {% endif %}
     </div>    
 </form>
 {% endblock content %}
+

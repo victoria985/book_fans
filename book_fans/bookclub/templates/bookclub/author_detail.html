@@ -1,19 +1,24 @@
 {% extends "base.html" %}
-{% load static i18n %} 
-{% block title %}{{ block.super }} | {% trans "author.name"|capfirst %}{% endblock title %}
+{% load static i18n %}
+{% block title %}
+  {{ author.name|capfirst }}
+{% endblock title %}
 {% block content %}
-    <h1>{% trans "author.name"|capfirst %}</h1> 
-    {% if author.photo %}
-        <img src="{{ author.photo.url }}" alt="{{ author.name }} Photo">
+  <h1>{{ author.name|capfirst }}</h1> 
+  {% if author.photo %}
+    <img src="{{ author.photo.url }}" alt="{{ author.name }} Photo" class="author-photo">
+  {% endif %}
+  <div class="author-biography">
+    <p>{{ author.biography|safe }}</p>
+  </div>
+  <div class="buttons">
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'author_delete' author.pk %}" class="button delete-button">{% trans "Delete Author" %}</a>
+      <a href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url 'author_list' %}{% endif %}" class="button return-button">{% trans "return"|capfirst %}</a>
     {% endif %}
-    <p>{% trans "biography"|capfirst %}: {{ author.biography }}</p> 
-    <div class="buttons">
-        {% if request.user.is_authenticated %}
-            <a href="{% url 'author_delete' author.pk %}">{% trans "Delete Author" %}</a>
-            <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "author_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
-        {% endif %}
-    </div>    
+  </div>    
 {% endblock content %}
+
 
 
 

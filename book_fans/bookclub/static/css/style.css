@@ -1,133 +1,126 @@
 
-/* Resetuoja pagrindinius stilius, kad visi elementai turėtų vienodą pagrindą */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Nustato stilius pagrindiniam konteineriui */
 body {
-    font-family: Arial, sans-serif; /* pasirinktas šriftas */
+    font-family: Arial, sans-serif; 
     font-size: 16px;
-    background-color: #f9f9f9; /* fono spalva */   
-    color: #333; /* teksto spalva */
-    /*line-height: 0.6; /* eilučių aukštis */
+    background-color: #f9f9f9;  
+    color: #333; 
 }
 
-/* Stilius antraštės */
 header {
-    background-color: #333; /* antraštės fono spalva */
-    color: #fff; /* antraštės teksto spalva */
-    max-height: 85px; /* Keiskite plotį pagal poreikį */
-    margin: 0 auto; /* Centruoti viršutinę dalį */
+    background-color: #333; 
+    color: #fff; 
+    max-height: 85px; 
+    margin: 0 auto; 
     width: 100%;
-    position: fixed;   
-    padding: 1rem; /* tarpas tarp turinio ir krašto */
+    position: fixed; 
+    z-index: 10;  
+    padding: 1rem; 
 }
 
-/* Stilius pagrindinio meniu */
 .nav {
-    list-style: none; /* paslėpti sąrašo punktų ženklus */
-    float: right; /* Išdėsto meniu dešinėje pusėje */
+    list-style: none; 
+    float: right; 
     font-size: 19px;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: flex-end; /* Meniu elementai bus nustatyti prie dešinio krašto */
-    align-items: center; /* Elementai bus vertikaliai centravimas */
-    margin-right: 0; /* Naikina tarpą nuo dešinio krašto */
+    justify-content: flex-end; 
+    align-items: center; 
+    margin-right: 0; 
 }
 
 .nav li {
     display: inline;
-    margin-right: 5px; /* Pašaliname tarpą tarp meniu elementų */
+    margin-right: 5px; 
     line-height: 2.5;
     margin-top: 5px;
 }
 
 .nav a {
-    color: #fff; /* Pakeiskite į norimą teksto spalvą */
-    text-decoration: none; /* Pašalinkite nuorodų paryškinimą, jei nereikia */
-    padding: 0.3rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
-    background-color: #333; /* Pridėkite foninę spalvą mygtukui */
-    border-radius: 5px; /* Pridėkite šešėlį, kad mygtukas būtų pastebimas */
+    color: #fff; 
+    text-decoration: none; 
+    padding: 0.3rem; 
+    background-color: #333; 
+    border-radius: 5px; 
 }
 
 .nav\.nav {
-    list-style: none; /* paslėpti sąrašo punktų ženklus */
-    float: right; /* Išdėsto meniu dešinėje pusėje */
+    list-style: none; 
+    float: right; 
     font-size: 19px;
-    margin: 60px;
+    margin: 25px;
     padding: 0;
-    justify-content: flex-end; /* Meniu elementai bus nustatyti prie dešinio krašto */
-    margin-right: 0; /* Naikina tarpą nuo dešinio krašto */
+    justify-content: flex-start; 
+    margin-right: 0; 
     text-decoration: none;
+    z-index: 9;
 }
 
 .nav\.nav li {
     display: inline;
-    padding-inline-end: 3px;
-    margin-right: 3px; /* Pašaliname tarpą tarp meniu elementų */
-    line-height: 3.5;
+    padding-inline-end: 1px;
+    margin-right: 0px; 
+    line-height: 1;
     float: right; 
 }
 
 .nav\.nav li a{
-    color: #fff; /* Pakeiskite į norimą teksto spalvą */
-    text-decoration: none; /* Pašalinkite nuorodų paryškinimą, jei nereikia */
-    padding: 0.3rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
-    background-color: #333; /* Pridėkite foninę spalvą mygtukui */
-    border-radius: 5px; /* Pridėkite šešėlį, kad mygtukas būtų pastebimas */
+    color: #fff; 
+    text-decoration: none; 
+    padding: 0.3rem; 
+    background-color: #333; 
+    border-radius: 5px; 
 }
 
-/* Stilius rėmelio aplink paveikslėlius */
 .image-container {
-    display: flex; /* Naudoti flexbox modelį */
-    justify-content: center; /* Horizontaliai centravimas */
-    align-items: center; /* Vertikaliai centravimas */
-    width: 100%; /* Pasirinkite plotį, kuris jums tinka */
-    height: 225px; /* Pasirinkite aukštį, kuris jums tinka */
-    border: 5px solid #ccc; /* Pridėkite rėmelį aplink paveikslėlius */
-    padding: 10px; /* Pridėkite įpolį aplink paveikslėlius */
-    margin-bottom: 15px; /* Pridėkite tarpą po image-container */
-}
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 215px; 
+    border: 5px solid #ccc; 
+    padding: 10px; 
+    margin-top: 0px;
+    margin-bottom: 0px; 
+}    
 
 .image-container img {
-    width: 110px; /* paveikslėlių plotis */
-    height: auto; /* automatiškai keičia aukštį proporcingai */
-    margin: 0.5rem; /* tarpas tarp paveikslėlių */
+    width: 110px; 
+    height: auto; 
+    margin: 0.5rem; 
 }
 
 .content-section {
-    margin-top: 11%; /* Pridėkite norimą procentinį atstumą nuo viršaus */
-    margin-bottom: 5%; /* Pridėkite norimą procentinį atstumą nuo apačios */
+    margin-top: 5%; 
+    margin-bottom: 5%; 
 }
 
-/* Stilius porų kuriantiems paveikslėliams */
 h2, h3 {
-    text-align: left; /* centravimas */
-    font-size: 16px;
-    padding: 15px;
-    margin-left: 100px
+    text-align: center; 
+    font-size: 19px;
+    padding: 10px;
 }
 
-/* Pridėkite stilių norimam atstumui tarp teksto ir paveikslėlių, jei reikia */
 .content-section h2,
 .content-section h3 {
-   margin-bottom: 1px; /* Atstumas nuo teksto iki paveikslėlių */
+   margin-bottom: 0.1%; 
 }
 
-/* Stilius priešdėlio nuorodom */
 footer {
-    background-color: #333; /* fono spalva */
-    color: #fff; /* teksto spalva */
-    padding: 1rem; /* tarpas tarp turinio ir krašto */
+    background-color: #333; 
+    color: #fff; 
+    padding: 1rem; 
     position: fixed;
     bottom: 0;
-    max-height: 65px; /* Keiskite plotį pagal poreikį */
+    max-height: 65px; 
     width: 100%;
-    text-align: center; /* centravimas */
+    text-align: center; 
 }
 
 footer .icon {
@@ -145,99 +138,92 @@ footer .icon {
 }
 
 .language {
-    list-style: none; /* paslėpti sąrašo punktų ženklus */
-    float: left; /* Išdėsto meniu dešinėje pusėje */
+    list-style: none; 
+    float: left; 
     font-size: 14px;
     margin: 0;
     padding: 0;
     margin-bottom: 0.3rem;
 }
 
-/* Stilius pagrindinio turinio srities */
 main {
-    padding: 2rem; /* tarpas tarp turinio ir krašto */
+    margin: 0.8%;
+    padding: 2rem; 
+    position: fixed;
+    z-index: 2;
+    width: 100%;
 }
 
-main ul {  /*prirasytas main ok*/
+main ul {  
     margin-top: 10px;
     padding: 10px;
     line-height: 1.5;
 }
 
-main h1 { /*prirasytas main ok*/
-    margin-top: 60px;
+main h1 { 
+    margin-top: 40px;
+    width: 60%;
     font-size: 35px;
     font-family: "Lato";
-    padding: 10px;
-    position: relative; /* Nustato, kad kitos pozicijos bus nurodytos remiantis šio elemento pozicija */
+    padding: 5px;
+    z-index: 1;
+    position: relative; 
 }
 
-main p {  /*prirasytas main*/
-    margin-top: 30px;
+main p {  
+    margin-top: 20px;
+    margin-bottom: 15px;
     font-size: 18px;
     font-family: "Lato";
     line-height: normal;
 }
 
 
-
 .paginator {
-    /* Jūsų stiliai paginatoriaus mygtukams */
-    display: inline-flex; /* Norint, kad mygtukai būtų eilutėje */
+    text-align: center;
+    padding: 5px 0;
+    margin-top: 2px; 
+    display: inline-flex; 
     gap: 7px;
-    padding: 7px 10px; /* Norint, kad mygtukai turėtų tarpus ir būtų matomi */
-    margin: 30px 5px; /* Norint, kad būtų tarpai tarp mygtukų */
     list-style-type: none;
-    color: #333; /* Norint, kad teksto spalva būtų tamsi */
+    z-index: 4;
+    color: #333; 
 }
 
 .paginator .current {
-    /* Stiliai dabartiniam puslapio mygtukui */
-    font-weight: bold; /* Norint, kad dabartinis puslapis būtų paryškintas */
-    background-color: #eee; /* Norint, kad dabartinio puslapio mygtukas būtų šviesus */
+    font-weight: bold; 
+    background-color: #eee; 
 }
 
-/* Stiliai prisijungimo forma */
 .login-container {
-    background-color: #fff; /* Fono spalva */
-    border-radius: 8px; /* Užapvalinti kraštai */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Šešėlis aplink konteinerį */
-    padding: 35px; /* Vidinis tarpas */
-    max-width: 900%; /* Maksimalus plotis */
-    margin: 10% auto; /* Centruoti vertikaliai ir horizontaliai */
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    padding: 35px; 
+    max-width: 900%; 
+    margin: 4.7% auto; 
     float: left;
     margin-left: 350px;
 }    
 
 .login-container p label {
-    width: 100% - 20px; /* Pilnas plotis atėmus padding */
-    padding: 10px; /* Vidinis tarpas */
-    margin-bottom: 15px; /* Tarpas tarp laukų */
-}
-
-.login-container button {
-    width: 30%; /* Pilnas plotis */
-    padding: 10px; /* Vidinis tarpas */
-    margin-top: 15px;
-    background-color: #007bff; /* Mygtuko spalva */
-    color: white; /* Teksto spalva */
-    border: none; /* Be rėmelio */
-    border-radius: 4px; /* Užapvalinti kraštai */
-    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
+    width: 100% - 20px; 
+    padding: 10px; 
+    margin-bottom: 15px; 
 }
 
 .login-container child4 {
-    margin-top: 1.3rem; /* tarpas tarp pavadinimo ir krašto */ 
-    text-align: center; /* centravimas */
+    margin-top: 1.3rem; 
+    text-align: center; 
 }
 
 .signup-container {
-    background-color: #fff; /* Fono spalva */
-    border-radius: 8px; /* Užapvalinti kraštai */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Šešėlis aplink konteinerį */
-    padding: 20px; /* Vidinis tarpas */
-    max-width: 400px; /* Maksimalus plotis */
-    margin: 10% auto; /* Centruoti vertikaliai ir horizontaliai */
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    padding: 20px; 
+    max-width: 400px; 
+    margin: 3% auto; 
     float: right;
     margin-right: 350px;
 }    
@@ -248,66 +234,171 @@ main p {  /*prirasytas main*/
     padding: 20px;
 }
 
-.signup-container a {
-    width: 45%; /* Pilnas plotis */
-    padding: 10px; /* Vidinis tarpas */
-    margin-top: 15px;
-    background-color: #007bff; /* Mygtuko spalva */
-    color: white; /* Teksto spalva */
-    border: none; /* Be rėmelio */
-    border-radius: 4px; /* Užapvalinti kraštai */
-    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
-    text-decoration: none; /* Pašalina bet kokį teksto dekoravimą, įskaitant pabraukimą */
-}
-
 .signup-container form p {
     margin: 2px;
     padding: 10px;
 }
-.signup-container form button {
-    width: 33%; /* Pilnas plotis */
-    padding: 8px; /* Vidinis tarpas */
-    margin-top: 25px;
-    float: right;
-    background-color: #007bff; /* Mygtuko spalva */
-    color: white; /* Teksto spalva */
-    border: none; /* Be rėmelio */
-    border-radius: 4px; /* Užapvalinti kraštai */
-    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
-    text-decoration: none; /* Pašalina bet kokį teksto dekoravimą, įsk*/
-} 
-   
-.login-container .btn {
-    width: 35%; /* Pilnas plotis */
-    padding: 8px; /* Vidinis tarpas */
-    float: right;
-    background-color: #007bff; /* Mygtuko spalva */
-    color: white; /* Teksto spalva */
-    border: none; /* Be rėmelio */
-    border-radius: 4px; /* Užapvalinti kraštai */
-    cursor: pointer; /* Rodyti rankelės žymeklį užvedus */
-    text-decoration: none; /* Pašalina bet kokį teksto dekoravimą, įska*/    
-}   
-    
+     
 .login-container p {
-    margin-top: 1rem;/* tarpas tarp pavadinimo ir krašto */ 
+    margin-top: 1rem;
     margin-bottom: 1.3rem;
-    text-align: left; /* centravimas */
-    
+    text-align: left; 
 } 
 
-button, .button, ul.paginator li a, .content p a {
-    background-color: #d8d8d8;
-    border: 1px solid #666666;
-    border-bottom: 2px solid #004488;
-    padding: 0.5rem;
-    font-size: 75%;
-    cursor: pointer;
-    margin-bottom: 10px;
+button, .button, ul.paginator li a, .content p a,
+.login-container .btn, .signup-container a,
+.login-container button, .signup-container form button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
 }
 
 button:hover, .button:hover, ul.paginator li a:hover {
-    background-color: #dfdfdf;
-    border-bottom: 2px solid #0055cc;
-}  
+    background-color: #0056b3;
+}
 
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.book-item {
+    max-width: 190px;  
+    max-height: 185px;
+    margin: 5px;      
+    padding: 5px;     
+    border: 1px solid #ccc; 
+    text-align: center; 
+    z-index: 4;
+}
+
+.book-item:hover {
+    transform: scale(1.05); 
+}
+
+.book-item a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+.book-cover {
+    width: 90px;  
+    height: 110px; 
+    object-fit: cover; 
+}
+
+
+.book-item h2 {
+    text-align: center;
+    margin: 10px 0; 
+    font-size: 15px;
+}
+
+.review-content {
+    padding: 10px;
+    margin: 10px 0;
+    width: 60%;
+    border-radius: 1rem;
+    border: 5px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.review-detail-scrollable {
+    max-height: 90vh; 
+    overflow-y: auto; 
+}
+
+.review-detail-scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+.review-detail-scrollable h2 {
+    margin-top: 15px;
+    float: left;
+}
+
+.review-detail-scrollable ul li {
+    list-style-type: none;
+}
+
+.review-detail-scrollable ul p {
+    margin-top: 40px;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.review-item h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.review-item p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+.authors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .author-item {
+    flex-basis: calc(33.333% - 20px); /* trys elementai eiluteje */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .author-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* nuotrauku apvalumas */
+  }
+
+  .genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.genre-item {
+    margin: 10px;
+    padding: 10px;
+    border: 5px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.genre-item h2 {
+    margin: 0;
+    padding: 10px 0;
+}

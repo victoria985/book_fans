@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext as _
 from django.http import HttpRequest, HttpResponse
+from user_profile_V2.models import Comment
 from . import models, forms 
 from django.contrib import messages
 from django.views import generic
@@ -33,7 +35,7 @@ class ReviewListView(generic.ListView):
 
 def author_list(request: HttpRequest) -> HttpResponse:
     author_list = models.Author.objects.all()
-    paginator = Paginator(author_list, 13) 
+    paginator = Paginator(author_list, 6) 
     page_number = request.GET.get('page')
     try:
         authors = paginator.page(page_number)
@@ -45,7 +47,7 @@ def author_list(request: HttpRequest) -> HttpResponse:
 
 def book_list(request: HttpRequest) -> HttpResponse:
     book_list = models.Book.objects.all()
-    paginator = Paginator(book_list, 13)  
+    paginator = Paginator(book_list, 14)  
     page_number = request.GET.get('page')
     try:
         books = paginator.page(page_number)
@@ -57,7 +59,7 @@ def book_list(request: HttpRequest) -> HttpResponse:
 
 def review_list(request: HttpRequest) -> HttpResponse:
     review_list = models.Review.objects.all()
-    paginator = Paginator(review_list, 15)  
+    paginator = Paginator(review_list, 2)  
     page_number = request.GET.get('page')
     try:
         reviews = paginator.page(page_number)
@@ -101,8 +103,9 @@ def genre_detail(request: HttpRequest, pk:int) -> HttpResponse:
     })
 
 def review_detail(request, pk:int) -> HttpResponse:
+    from user_profile_V2.models import Comment
     review = get_object_or_404(models.Review, pk=pk)
-    comments = models.Comment.objects.filter(review=review)
+    comments = Comment.objects.filter(review=review)
     return render(request, 'bookclub/review_detail.html', {
         'review': review,
         'comments': comments,

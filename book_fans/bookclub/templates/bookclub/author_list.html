@@ -9,12 +9,17 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <h1>{% trans "authors"|capfirst %}</h1> 
-    <ul>
+    <h1>{% trans "authors"|capfirst %}</h1>
+    <div class="authors-list">
         {% for author in authors %}
-            <li><a href="{% url 'author_detail' pk=author.pk %}">{{ author.name }}</a></li>
+            <div class="author-item">
+                <h2><a href="{% url 'author_detail' pk=author.pk %}">{{ author.name }}</a></h2>
+                {% if author.photo %}
+                    <img src="{{ author.photo.url }}" alt="{{ author.name }}" class="author-photo">
+                {% endif %}
+            </div>
         {% endfor %}
-    </ul>
+    </div>
     <ul class="paginator">
         {% if authors.has_previous %}
             <li><a href="?page=1">&LeftArrowBar;</a></li>
@@ -35,5 +40,3 @@
         {% endif %}
     </div>    
 {% endblock content %}
-
-

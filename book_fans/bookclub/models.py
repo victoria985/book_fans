@@ -3,6 +3,7 @@ from tinymce.models import HTMLField  # Importuojame HTMLField iš django-tinymc
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model  
+from PIL import Image
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Author(models.Model):
@@ -19,6 +20,16 @@ class Author(models.Model):
 
     def get_absolute_url(self):
         return reverse("author_detail", kwargs={"pk": self.pk})
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.photo:
+            image = Image.open(self.photo.path)
+            if image.size[0] > 150 or image.size[1] > 150:
+                output_size = (150, 150)
+                image.thumbnail(output_size)
+                image.save(self.photo.path)
+
 
 class Genre(models.Model):
     name = models.CharField(_('name'), max_length=50, db_index=True)
@@ -58,6 +69,16 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.cover_image:
+            image = Image.open(self.cover_image.path)
+            if image.size[0] > 300 or image.size[1] > 400:
+                output_size = (300, 400)
+                image.thumbnail(output_size)
+                image.save(self.cover_image.path)
+
 
 class Review(models.Model):
     comment = models.TextField(_('comment'), max_length=500, blank=True)

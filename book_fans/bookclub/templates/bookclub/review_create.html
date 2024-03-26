@@ -5,10 +5,10 @@
 <form method="post" action="{{ request.path }}">
     {% csrf_token %}
     {{ form.as_p }}
-    <p><button type="submit">{% trans "create"|capfirst %}</button></p>
 </form>
 <div class="buttons">
     {% if request.user.is_authenticated %}
+        <p><button type="submit">{% trans "create"|capfirst %}</button></p>
         <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "review_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
     {% endif %}
 </div>
