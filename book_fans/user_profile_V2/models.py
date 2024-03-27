@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from PIL import Image
 
+
 class UserProfileV2(models.Model):  # Pakeistas UserProfile į UserProfileV2
     user = models.OneToOneField(get_user_model(), verbose_name=_("user"), on_delete=models.CASCADE)
     picture = models.ImageField(_("picture"), upload_to='user_pictures/', blank=True, null=True)

@@ -13,9 +13,9 @@ body {
 }
 
 header {
-    background-color: #333; 
+    background-color: #FD7E14;
     color: #fff; 
-    max-height: 85px; 
+    max-height: 80px; 
     margin: 0 auto; 
     width: 100%;
     position: fixed; 
@@ -46,7 +46,7 @@ header {
     color: #fff; 
     text-decoration: none; 
     padding: 0.3rem; 
-    background-color: #333; 
+    background-color: #FD7E14; 
     border-radius: 5px; 
 }
 
@@ -54,13 +54,15 @@ header {
     list-style: none; 
     float: right; 
     font-size: 19px;
-    margin: 25px;
+    margin: 20px;
     padding: 0;
     justify-content: flex-start; 
     margin-right: 0; 
     text-decoration: none;
     z-index: 9;
+    position: relative;
 }
+
 
 .nav\.nav li {
     display: inline;
@@ -74,7 +76,7 @@ header {
     color: #fff; 
     text-decoration: none; 
     padding: 0.3rem; 
-    background-color: #333; 
+    background-color: #FD7E14; 
     border-radius: 5px; 
 }
 
@@ -84,7 +86,7 @@ header {
     align-items: center; 
     width: 100%; 
     height: 215px; 
-    border: 5px solid #ccc; 
+    border: 4px solid #007bff; 
     padding: 10px; 
     margin-top: 0px;
     margin-bottom: 0px; 
@@ -113,14 +115,15 @@ h2, h3 {
 }
 
 footer {
-    background-color: #333; 
+    background-color: #FD7E14; 
     color: #fff; 
     padding: 1rem; 
     position: fixed;
     bottom: 0;
-    max-height: 65px; 
+    max-height: 55px; 
     width: 100%;
     text-align: center; 
+    z-index: 3;
 }
 
 footer .icon {
@@ -147,13 +150,19 @@ footer .icon {
 }
 
 main {
-    margin: 0.8%;
+    margin: 0.6%;
+    background-image: url('/static/img/ok.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(70px);
+    z-index: 999;
     padding: 2rem; 
     position: fixed;
+    overflow-y: auto;
     z-index: 2;
     width: 100%;
 }
-
+ 
 main ul {  
     margin-top: 10px;
     padding: 10px;
@@ -162,7 +171,7 @@ main ul {
 
 main h1 { 
     margin-top: 40px;
-    width: 60%;
+    width: 40%;
     font-size: 35px;
     font-family: "Lato";
     padding: 5px;
@@ -179,6 +188,7 @@ main p {
 }
 
 
+
 .paginator {
     text-align: center;
     padding: 5px 0;
@@ -187,7 +197,7 @@ main p {
     gap: 7px;
     list-style-type: none;
     z-index: 4;
-    color: #333; 
+    color: #FD7E14;
 }
 
 .paginator .current {
@@ -196,7 +206,7 @@ main p {
 }
 
 .login-container {
-    background-color: #fff; 
+    background-color: #e9ebf0;
     border-radius: 8px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
     padding: 35px; 
@@ -218,7 +228,7 @@ main p {
 }
 
 .signup-container {
-    background-color: #fff; 
+    background-color: #e9ebf0;
     border-radius: 8px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
     padding: 20px; 
@@ -256,7 +266,7 @@ button, .button, ul.paginator li a, .content p a,
 }
 
 button:hover, .button:hover, ul.paginator li a:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; 
 }
 
 .book-list {
@@ -266,11 +276,11 @@ button:hover, .button:hover, ul.paginator li a:hover {
 }
 
 .book-item {
-    max-width: 190px;  
-    max-height: 185px;
+    max-width: 175px;  
+    max-height: 200px;
     margin: 5px;      
     padding: 5px;     
-    border: 1px solid #ccc; 
+    border: 3px solid #FD7E14; 
     text-align: center; 
     z-index: 4;
 }
@@ -286,7 +296,7 @@ button:hover, .button:hover, ul.paginator li a:hover {
 
 .book-cover {
     width: 90px;  
-    height: 110px; 
+    height: 137px; 
     object-fit: cover; 
 }
 
@@ -295,20 +305,31 @@ button:hover, .button:hover, ul.paginator li a:hover {
     text-align: center;
     margin: 10px 0; 
     font-size: 15px;
+    margin-top:1px;
 }
-
+    
 .review-content {
     padding: 10px;
     margin: 10px 0;
     width: 60%;
     border-radius: 1rem;
-    border: 5px solid #ccc;
-    background-color: #f9f9f9;
+    border: 5px solid #FD7E14;
+    background-color: #e9ebf0;
+}
+
+strong {
+    border-bottom-color: #0056b3;
+    background-color: #e9ebf0;
 }
 
 .review-detail-scrollable {
-    max-height: 90vh; 
-    overflow-y: auto; 
+    max-height: 100vh;  
+}
+
+.review-detail-scrollable p  {
+     border-bottom-color: #0056b3;
+     background-color: #e9ebf0;
+     border-radius: 0.5rem;
 }
 
 .review-detail-scrollable::-webkit-scrollbar {
@@ -316,7 +337,8 @@ button:hover, .button:hover, ul.paginator li a:hover {
 }
 
 .review-detail-scrollable h2 {
-    margin-top: 15px;
+    margin-top: 5px;
+    font-size: 25px;
     float: left;
 }
 
@@ -325,8 +347,15 @@ button:hover, .button:hover, ul.paginator li a:hover {
 }
 
 .review-detail-scrollable ul p {
-    margin-top: 40px;
+    margin-top: 50px;
+    border-bottom: 3px solid;
+    border-bottom-color: #0056b3;
+    background-color: #e9ebf0;
 }
+
+main .review-detail-scrollable {
+    height: 583px;
+} 
 
 .reviews-list {
     display: flex;
@@ -335,56 +364,90 @@ button:hover, .button:hover, ul.paginator li a:hover {
 }
 
 .review-item {
-    border: 1px solid #ccc;
+    border: 5px solid #ccc;
+    border-color: #FD7E14;
     padding: 10px;
     border-radius: 5px;
+    background-color: #e9ebf0;
+    
 }
 
 .review-item h2 {
-    color: #333;
+    color: #FD7E14;
     margin-bottom: 5px;
 }
 
 .review-item p {
     margin-bottom: 5px;
-    color: #666;
+    color: #666; 
+}
+
+main .review-item {
+    height: 218px
+}
+
+main .content {
+    height: 527px;
+} 
+
+.search-form-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -49px;  
+    margin-bottom: -16px;
 }
 
 .button {
-    background-color: #007bff;
+    background-color: #007bff; 
     color: white;
     padding: 5px 10px;
     text-decoration: none;
     border-radius: 3px;
+    margin-top: 8px;
+    margin-bottom: 7px;
 }
 
+
 .button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; 
 }
 
 .buttons {
-    margin-top: 40px;
+    margin-top: 2.5px;
 }
+
 
 .authors-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  }
+}
   
-  .author-item {
-    flex-basis: calc(33.333% - 20px); /* trys elementai eiluteje */
+.author-item {
+    flex-basis: calc(33.333% - 20px); 
     margin-bottom: 20px;
     text-align: center;
-  }
-  
-  .author-photo {
+}
+
+.author-item h2 a {
+    color: #007bff;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+.author-name a:hover {
+    text-decoration: underline; 
+}
+
+.author-photo {
     max-width: 100%;
     height: auto;
-    border-radius: 50%; /* nuotrauku apvalumas */
-  }
+    border-radius: 50%; 
+}
 
-  .genre-list {
+.genre-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -393,12 +456,22 @@ button:hover, .button:hover, ul.paginator li a:hover {
 .genre-item {
     margin: 10px;
     padding: 10px;
-    border: 5px solid #ccc;
+    border: 5px solid #FD7E14; 
+    width: 255px;
+    height: 130px;
     border-radius: 3px;
     text-align: center;
 }
 
-.genre-item h2 {
+.genre-item h2 a {
     margin: 0;
     padding: 10px 0;
+    color: #007bff;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 25px;
+}
+
+main .genre-list {
+    height: 458px
 }

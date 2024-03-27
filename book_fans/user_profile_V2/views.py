@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model  
 from bookclub.models import Review
 from user_profile_V2.models import Comment
+from .models import UserProfileV2
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -31,6 +32,22 @@ def signup(request: HttpRequest) -> HttpResponse:
     return render(request, 'user_profile_V2/signup.html', {
         'form': form,
     })
+
+def signup(request):
+    if request.method == 'POST':
+        user_form = forms.CreateUserForm(request.POST)
+        profile_form = forms.ProfileForm(request.POST, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            new_user = user_form.save()
+            new_profile = UserProfileV2.objects.create(user=new_user)
+            new_profile.picture = profile_form.cleaned_data['picture']
+            new_profile.save()
+            messages.success(request, _("Thank you! You can log in now with your credentials."))
+            return redirect('login')
+    else:
+        user_form = forms.CreateUserForm()
+        profile_form = forms.ProfileForm()
+    return render(request, 'user_profile_V2/signup.html', {'user_form': user_form, 'profile_form': profile_form})
 
 @login_required
 def user_detail(request: HttpRequest, username: str | None = None) -> HttpResponse:

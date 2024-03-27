@@ -12,7 +12,6 @@
     <button type="submit" class="button">{% trans "submit"|capfirst %}</button>
 </form>
 <div class="buttons">
-    <button type="submit" class="button">{% trans "create"|capfirst %}</button>
     <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "review_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
 </div>
 {% endblock content %}

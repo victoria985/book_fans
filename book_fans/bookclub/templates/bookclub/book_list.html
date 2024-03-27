@@ -1,8 +1,14 @@
 {% extends "base.html" %}
-{% load static i18n %} 
+{% load static i18n %}
 {% block title %}{{ block.super }} | {% trans "books"|capfirst %}{% endblock title %}
 {% block content %}
-    <h1>{% trans "books"|capfirst %}</h1> 
+    <h1>{% trans "books"|capfirst %}</h1>
+    <div class="search-form-container">
+        <form method="get" action="{% url 'book_list' %}">
+            <input type="text" name="book_name" placeholder="{% trans 'Search books' %}">
+            <button type="submit">{% trans "Search" %}</button>
+        </form>
+    </div>    
     <ul class="paginator">
         {% if books.has_previous %}
             <li><a href="?page=1">&LeftArrowBar;</a></li>
@@ -15,8 +21,8 @@
             <li><a href="?page={{ books.next_page_number }}">&ShortRightArrow;</a></li>
             <li><a href="?page={{ books.paginator.num_pages }}">&RightArrowBar;</a></li>
         {% endif %}
-    </ul>    
-        <div class="book-list">
+    </ul>
+    <div class="book-list">
         {% for book in books %}
             <div class="book-item">
                 {% if book.cover_image %}
@@ -28,23 +34,17 @@
             </div>
         {% endfor %}
     </div>
-        <div class="buttons">
+    <div class="buttons">
         {% if request.user.is_authenticated %}
             <a class="button" href="{% url "book_create" %}">{% trans "create"|capfirst %}</a>
             <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "index" %}{% endif %}">{% trans "return"|capfirst %}</a>
         {% endif %}
-    </div> 
+    </div>
     {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}   
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock content %}
-
-
-
-
-
-

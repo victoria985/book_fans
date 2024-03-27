@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfileV2, Comment
 from django.contrib.auth import get_user_model
 
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()  
@@ -32,3 +33,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['description'] 
+        

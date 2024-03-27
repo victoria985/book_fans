@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('bookclub/books/', views.book_list, name='book_list'),
@@ -17,6 +18,6 @@ urlpatterns = [
     path('bookclub/reviews/', views.review_list, name='review_list'),
     path('bookclub/reviews/<int:pk>/', views.review_detail, name='review_detail'),
     path('bookclub/review/', views.review_create, name='review_create'),
+    path('review/<int:pk>/edit/', views.review_edit, name='review_edit'),
     path('bookclub/review/<int:pk>/delete/', views.review_delete, name='review_delete'),
 ]
-

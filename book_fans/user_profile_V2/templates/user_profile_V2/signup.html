@@ -5,11 +5,11 @@
     <h5>{% trans "Nice to see you here, please fill out the registration form!" %}</h5>
     <div class="signup-container">
         <h2 class="form-heading">{% trans "signup"|capfirst %} BookFans</h2>
-        <form method="post" action="{{ request.path }}">
+        <form method="post" action="{{ request.path }}" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
             <button type="submit">{% trans "register"|capfirst %}</button>
-            <p>{% trans "We wish you good emotions, visiting our page!" %}</p>
         </form>
     </div>
 {% endblock content %}

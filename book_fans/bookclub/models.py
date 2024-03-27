@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from PIL import Image
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+
 class Author(models.Model):
     name = models.CharField(_('name'), blank=True, db_index=True, max_length=100)
     biography = HTMLField(_('biography'), blank=True)  # Pakeičiame į HTMLField
@@ -48,7 +49,7 @@ class Genre(models.Model):
 class Book(models.Model):
     name = models.CharField(_('name'), max_length=100)
     publication_year = models.PositiveIntegerField(blank=True)
-    description = HTMLField(_('description'), blank=True)  # Pakeičiame į HTMLField
+    description = HTMLField(_('description'), blank=True)  
     author = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,

@@ -4,24 +4,7 @@
   {% trans "review list"|capfirst %}
 {% endblock title %}
 {% block content %}
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
   <h1>{% trans "review list"|capfirst %}</h1>
-  <div class="reviews-list">
-    {% for review in reviews %}
-      <div class="review-item">
-        <h2>{{ review.book.name }}</h2>
-        <p><strong>{% trans "Rating" %}:</strong> {{ review.rating }}/5</p>
-        <p><strong>{% trans "Comment" %}:</strong> {{ review.comment|truncatechars:100 }}</p>
-        <a href="{% url 'review_detail' review.pk %}" class="button">{% trans "Read more" %}</a>
-      </div>
-    {% endfor %}
-  </div>
   <ul class="paginator">
     {% if reviews.has_previous %}
         <li><a href="?page=1">&LeftArrowBar;</a></li>
@@ -34,13 +17,30 @@
         <li><a href="?page={{ reviews.next_page_number }}">&ShortRightArrow;</a></li>
         <li><a href="?page={{ reviews.paginator.num_pages }}">&RightArrowBar;</a></li>
     {% endif %}
- </ul>
+  </ul>
+  <div class="reviews-list">
+    {% for review in reviews %}
+      <div class="review-item">
+        <h2>{{ review.book.name }}</h2>
+        <p><strong>{% trans "Rating" %}:</strong> {{ review.rating }}/5</p>
+        <p><strong>{% trans "Comment" %}:</strong> {{ review.comment|truncatechars:100 }}</p>
+        <a href="{% url 'review_detail' review.pk %}" class="button">{% trans "Read more" %}</a>
+      </div>
+    {% endfor %}
+  </div>
     <div class="buttons">
     {% if request.user.is_authenticated %}
       <a class="button" href="{% url "review_create" %}">{% trans "create"|capfirst %}</a>
       <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "index" %}{% endif %}">{% trans "return"|capfirst %}</a>
     {% endif %}
   </div>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% endblock content %}
 
 

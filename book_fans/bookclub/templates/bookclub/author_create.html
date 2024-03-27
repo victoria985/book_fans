@@ -1,15 +1,15 @@
 {% extends "base.html" %}{% load i18n %}
-{% block title %}{% trans "create a author at"|capfirst %} {{ block.super }}{% endblock title %}
+{% block title %}{% trans "create a author"|capfirst %} {{ block.super }}{% endblock title %}
 {% block content %}
-<h1>{% trans "create a author"|capfirst %}</h1>
-<form method="post" action="{{ request.path }}">
+<h1>{% trans "create an author"|capfirst %}</h1>
+<form method="post" action="{{ request.path }}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <p><button type="submit">{% trans "create"|capfirst %}</button></p>
+    <button type="submit" class="button">{% trans "Submit"|capfirst %}</button>
 </form>
 <div class="buttons">
     {% if request.user.is_authenticated %}
-        <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "author_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+        <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "author_list" %}{% endif %}">{% trans "Return"|capfirst %}</a>
     {% endif %}
 </div>
 {% endblock content %}

@@ -35,6 +35,9 @@ class ReviewListView(generic.ListView):
 
 def author_list(request: HttpRequest) -> HttpResponse:
     author_list = models.Author.objects.all()
+    author_name = request.GET.get('author_name')
+    if author_name:
+        author_list = author_list.filter(name__icontains=author_name)
     paginator = Paginator(author_list, 6) 
     page_number = request.GET.get('page')
     try:
@@ -47,6 +50,9 @@ def author_list(request: HttpRequest) -> HttpResponse:
 
 def book_list(request: HttpRequest) -> HttpResponse:
     book_list = models.Book.objects.all()
+    book_name = request.GET.get('book_name')
+    if book_name:
+        book_list = book_list.filter(name__icontains=book_name)
     paginator = Paginator(book_list, 14)  
     page_number = request.GET.get('page')
     try:
@@ -56,6 +62,7 @@ def book_list(request: HttpRequest) -> HttpResponse:
     except EmptyPage:
         books = paginator.page(paginator.num_pages)
     return render(request, 'bookclub/book_list.html', {'books': books})
+
 
 def review_list(request: HttpRequest) -> HttpResponse:
     review_list = models.Review.objects.all()
@@ -71,7 +78,6 @@ def review_list(request: HttpRequest) -> HttpResponse:
 
 def index(request):
     books = models.Book.objects.all()  
-
     context = {
         'books': books,  
     }
@@ -114,7 +120,7 @@ def review_detail(request, pk:int) -> HttpResponse:
 @login_required
 def book_create(request):
     if request.method == 'POST':
-        form = forms.BookForm(request.POST)
+        form = forms.BookForm(request.POST, request.FILES)  
         if form.is_valid():
             form.save()
             messages.success(request, _('The book has been created successfully.'))
@@ -126,7 +132,7 @@ def book_create(request):
 @login_required
 def author_create(request):
     if request.method == 'POST':
-        form = forms.AuthorForm(request.POST)
+        form = forms.AuthorForm(request.POST, request.FILES)  
         if form.is_valid():
             form.save()
             messages.success(request, _('The author has been created successfully.'))
@@ -146,6 +152,18 @@ def review_create(request):
     else:
         form = forms.ReviewForm()
     return render(request, 'bookclub/review_create.html', {'form': form})
+
+@login_required
+def review_edit(request, pk):
+    review = get_object_or_404(Review, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = forms.ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('review_detail', pk=review.pk)
+    else:
+        form = forms.ReviewForm(instance=review)
+    return render(request, 'bookclub/review_edit.html', {'form': form})
 
 @login_required
 def book_delete(request, pk):
