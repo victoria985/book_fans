@@ -1,9 +1,45 @@
 {% extends "base.html" %}
-{% load static i18n %} 
-
+{% load static i18n %}
 {% block title %}{{ block.super }} | {% trans "books"|capfirst %}{% endblock title %}
-
 {% block content %}
+    <h1>{% trans "books"|capfirst %}</h1>
+    <div class="search-form-container">
+        <form method="get" action="{% url 'book_list' %}">
+            <input type="text" name="book_name" placeholder="{% trans 'Search books' %}">
+            <button type="submit">{% trans "Search" %}</button>
+        </form>
+    </div>    
+    <ul class="paginator">
+        {% if books.has_previous %}
+            <li><a href="?page=1">&LeftArrowBar;</a></li>
+            <li><a href="?page={{ books.previous_page_number }}">&ShortLeftArrow;</a></li>
+        {% endif %}
+        {% for page in books.paginator.page_range %}
+            <li {% if page == books.number %}class="current"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endfor %}
+        {% if books.has_next %}
+            <li><a href="?page={{ books.next_page_number }}">&ShortRightArrow;</a></li>
+            <li><a href="?page={{ books.paginator.num_pages }}">&RightArrowBar;</a></li>
+        {% endif %}
+    </ul>
+    <div class="book-list">
+        {% for book in books %}
+            <div class="book-item">
+                {% if book.cover_image %}
+                    <a href="{% url 'book_detail' pk=book.pk %}">
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="book-cover">
+                    </a>
+                {% endif %}
+                <h2><a href="{% url 'book_detail' pk=book.pk %}">{{ book.name }}</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="buttons">
+        {% if request.user.is_authenticated %}
+            <a class="button" href="{% url "book_create" %}">{% trans "create"|capfirst %}</a>
+            <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "index" %}{% endif %}">{% trans "return"|capfirst %}</a>
+        {% endif %}
+    </div>
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -11,12 +47,4 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <h1>{% trans "books"|capfirst %}</h1> 
-    <ul>
-        {% for book in book_list %}
-            <li><a href="{% url 'book_detail' pk=book.pk %}">{% trans book.name|capfirst %}</a></li> 
-        {% endfor %}
-    </ul>
 {% endblock content %}
-
-

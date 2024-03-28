@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static i18n %}  
+{% block title %}
+  {% trans "create comment"|capfirst %}
+{% endblock title %}
+{% block content %}
+<h1>{% trans "create comment"|capfirst %}</h1>
+<p>{{ review.book.name }} - {{ review.user.username }}</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button">{% trans "submit"|capfirst %}</button>
+</form>
+<div class="buttons">
+    <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "review_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+</div>
+{% endblock content %}
+
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container-user-update">
+    <h1>{% trans "update your profile"|capfirst %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">{% trans "save"|capfirst %}</button>
+    </form>
+    <h2>{% trans "your reviews"|capfirst %}</h2>
+    {% for review in user_reviews %}
+        <div class="review-container">
+            <strong>{% trans "book:"|capfirst %}</strong> {{ review.book.name }}<br>
+            <strong>{% trans "rating:"|capfirst %}</strong> {{ review.rating }}<br>
+            <strong>{% trans "comment:"|capfirst %}</strong> {{ review.comment }}
+            <div class="review-actions">
+                <a class="button" href="{% url 'review_delete' review.id %}">{% trans "delete"|capfirst %}</a>
+            </div>
+        </div>
+    {% endfor %}
+    <h2>{% trans "your comments"|capfirst %}</h2>
+    {% for comment in user_comments %}
+        <div class="comment-container">
+            <strong>{% trans "Comment on Review:" %}</strong> {{ comment.review.comment }}<br>
+            <strong>{% trans "Review Author:" %}</strong> {{ comment.review.user.username }}<br>
+            <strong>{% trans "Book Title:" %}</strong> {{ comment.review.book.name }}<br>
+            <div class="comment-actions">
+                <a class="button" href="{% url 'comment_delete' comment.id %}">{% trans "delete"|capfirst %}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

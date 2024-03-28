@@ -1,26 +1,46 @@
 {% extends "base.html" %}
 {% load static i18n %}  
-
 {% block title %}
   {{ block.super }} | {% trans "review"|capfirst %}: {{ review.comment }}
 {% endblock title %}
-
 {% block content %}
-<h1>{% trans "review"|capfirst %}</h1>
-<p>{% trans "comment"|capfirst %}: {{ review.comment }}</p>
-<p>{% trans "rating"|capfirst %}: {{ review.rating }}</p>
-<p>{% trans "book"|capfirst %}: <a href="{{ review.book.get_absolute_url }}">{{ review.book.name }}</a></p>
-<p>{% trans "user"|capfirst %}: {{ review.user.username }}</p>
-
-{% if comments %}
-  <h2>{% trans "comments"|capfirst %}</h2>
-  <ul>
-    {% for comment in comments %}
-      <li>{{ comment.text }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
+<div class="review-detail-scrollable">
+    <h1>{% trans "review"|capfirst %}</h1>
+    <p><strong>{% trans "book"|capfirst %}:</strong> {{ review.book.name }}</p>
+    <div class="review-content">
+      <p>{{ review.comment|safe }}</p>
+    </div>
+    <p><strong>{% trans "rating"|capfirst %}:</strong> {{ review.rating }}</p>
+    <p><strong>{% trans "user"|capfirst %}:</strong> {{ review.user.username }}</p>
+    <div class="buttons">
+      {% if request.user.is_staff %}
+        <a class="button" href="{% url 'review_delete' review.id %}">{% trans "Delete" %}</a>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+        <a class="button" href="{% url 'comment_create' review.pk %}">{% trans "add comment"|capfirst %}</a>
+        <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "review_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+      {% endif %}
+    </div>
+    {% if review.user_comments.all %}
+      <h2>{% trans "comments"|capfirst %}</h2>
+      <ul>
+        {% for comment in review.user_comments.all %}
+          <li>{{ comment.text }}</li>
+          {% if comment.description %}
+            <p>{{ comment.description|safe }}</p>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>{% trans "No comments yet." %}</p>
+    {% endif %}
+</div>
 {% endblock content %}
+
+
+
+
+
 
 
 

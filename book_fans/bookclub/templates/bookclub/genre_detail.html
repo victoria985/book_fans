@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load static i18n %} 
-
 {% block title %}{% trans "genre detail"|capfirst %}{% endblock title %}
-
 {% block content %}
   <h1>{{ genre.name }}</h1>
   <p>{% trans "number of books in this genre:"|capfirst %} {{ genre.book_set.count }}</p>
   <p><a href="{% url 'genre_book_list' pk=genre.pk %}">{% trans "view books in this genre"|capfirst %}</a></p>
+  <div class="buttons">
+    {% if request.user.is_authenticated %}
+      <a class="button" href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url "genre_list" %}{% endif %}">{% trans "return"|capfirst %}</a>
+    {% endif %}
+</div>
 {% endblock content %}
 
 

@@ -1,118 +1,498 @@
-/* Resetuoja pagrindinius stilius, kad visi elementai turėtų vienodą pagrindą */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Nustato stilius pagrindiniam konteineriui */
 body {
-    font-family: Arial, sans-serif; /* pasirinktas šriftas */
-    font-size: 18px;
-    background-color: #f9f9f9; /* fono spalva */
-    color: #333; /* teksto spalva */
-    line-height: 0.6; /* eilučių aukštis */
+    font-family: Arial, sans-serif; 
+    font-size: 16px;
+    background-color: #f9f9f9;  
+    color: #333; 
 }
 
-/* Stilius antraštės */
 header {
-    background-color: #333; /* antraštės fono spalva */
-    color: #fff; /* antraštės teksto spalva */
-    max-height: 70px; /* Keiskite plotį pagal poreikį */
-    margin: 0 auto; /* Centruoti viršutinę dalį */
+    background-color: #FD7E14;
+    color: #fff; 
+    max-height: 80px; 
+    margin: 0 auto; 
     width: 100%;
-    position: fixed;   
-    padding: 1rem; /* tarpas tarp turinio ir krašto */
+    position: fixed; 
+    z-index: 10;  
+    padding: 1rem; 
 }
 
-/* Stilius pagrindinio meniu */
 .nav {
-    list-style: none; /* paslėpti sąrašo punktų ženklus */
-    float: right; /* Išdėsto meniu dešinėje pusėje */
-    font-size: 17px;
+    list-style: none; 
+    float: right; 
+    font-size: 19px;
     margin: 0;
     padding: 0;
-    gap: 7;
-    margin-right: 0; /* Naikina tarpą nuo dešinio krašto */
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    margin-right: 0; 
 }
 
 .nav li {
-    display: inline; /* išdėsto meniu horizontaliai */
+    display: inline;
+    margin-right: 5px; 
+    line-height: 2.5;
+    margin-top: 5px;
 }
 
 .nav a {
-    color: #fff; /* Pakeiskite į norimą teksto spalvą */
-    text-decoration: none; /* Pašalinkite nuorodų paryškinimą, jei nereikia */
-    padding: 0.5rem 1rem; /* Galite pakeisti mygtuko dydį pagal poreikį */
-    background-color: #333; /* Pridėkite foninę spalvą mygtukui */
-    border-radius: 5px; /* Pridėkite šešėlį, kad mygtukas būtų pastebimas */
+    color: #fff; 
+    text-decoration: none; 
+    padding: 0.3rem; 
+    background-color: #FD7E14; 
+    border-radius: 5px; 
 }
 
-/* Naujas stilius kalbų perjungimo mygtukui */
-.language-form {
-    float: right;
-    margin: 0;
+.nav\.nav {
+    list-style: none; 
+    float: right; 
+    font-size: 19px;
+    margin: 20px;
+    padding: 0;
+    justify-content: flex-start; 
+    margin-right: 0; 
+    text-decoration: none;
+    z-index: 9;
+    position: relative;
 }
 
-/* Naujas stilius prisijungimo ir registracijos mygtukams */
-.auth-buttons {
-    float: right;
-    margin-top: 0px;
+
+.nav\.nav li {
+    display: inline;
+    padding-inline-end: 1px;
+    margin-right: 0px; 
+    line-height: 1;
+    float: right; 
 }
 
-/* Stilius pagrindinio turinio srities */
-main {
-    padding: 0.5rem; /* tarpas tarp turinio ir krašto */
+.nav\.nav li a{
+    color: #fff; 
+    text-decoration: none; 
+    padding: 0.3rem; 
+    background-color: #FD7E14; 
+    border-radius: 5px; 
 }
 
-/* Stilius rėmelio aplink paveikslėlius */
 .image-container {
-    display: flex; /* Naudoti flexbox modelį */
-    justify-content: center; /* Horizontaliai centravimas */
-    align-items: center; /* Vertikaliai centravimas */
-    width: 100%; /* Pasirinkite plotį, kuris jums tinka */
-    height: 236px; /* Pasirinkite aukštį, kuris jums tinka */
-    border: 5px solid #ccc; /* Pridėkite rėmelį aplink paveikslėlius */
-    padding: 10px; /* Pridėkite įpolį aplink paveikslėlius */
-    margin-bottom: 15px; /* Pridėkite tarpą po image-container */
-}
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 215px; 
+    border: 4px solid #007bff; 
+    padding: 10px; 
+    margin-top: 0px;
+    margin-bottom: 0px; 
+}    
 
 .image-container img {
-    width: 110px; /* paveikslėlių plotis */
-    height: auto; /* automatiškai keičia aukštį proporcingai */
-    margin: 0.5rem; /* tarpas tarp paveikslėlių */
+    width: 110px; 
+    height: auto; 
+    margin: 0.5rem; 
 }
 
 .content-section {
-    margin-top: 5%; /* Pridėkite norimą procentinį atstumą nuo viršaus */
-    margin-bottom: 5%; /* Pridėkite norimą procentinį atstumą nuo apačios */
+    margin-top: 5%; 
+    margin-bottom: 5%; 
 }
 
-/* Stilius porų kuriantiems paveikslėliams */
-h3, h4 {
-    margin-top: 1.5rem; /* tarpas tarp pavadinimo ir krašto */
-    text-align: center; /* centravimas */
+h2, h3 {
+    text-align: center; 
+    font-size: 19px;
+    padding: 10px;
 }
 
-/* Pridėkite stilių norimam atstumui tarp teksto ir paveikslėlių, jei reikia */
-.content-section h3,
-.content-section h4 {
-    margin-bottom: 10px; /* Atstumas nuo teksto iki paveikslėlių */
+.content-section h2,
+.content-section h3 {
+   margin-bottom: 0.1%; 
 }
 
-/* Stilius priešdėlio nuorodom */
 footer {
-    background-color: #333; /* fono spalva */
-    color: #fff; /* teksto spalva */
-    padding: 1rem; /* tarpas tarp turinio ir krašto */
+    background-color: #FD7E14; 
+    color: #fff; 
+    padding: 1rem; 
     position: fixed;
     bottom: 0;
+    max-height: 55px; 
     width: 100%;
-    text-align: center; /* centravimas */
+    text-align: center; 
+    z-index: 3;
 }
 
 footer .icon {
     max-height: 43px;
     padding: 0.5rem;
 }
+
+.user-content {
+    background-color: #ffffff7f;
+    border: 2px solid #999999;
+    border-radius: 1rem;
+    margin: 1rem;
+    overflow: auto;
+    max-width: max-content;
+}
+
+.language {
+    list-style: none; 
+    float: left; 
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0.3rem;
+}
+
+main {
+    margin: 0.6%;
+    background-image: url('/static/img/ok.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(70px);
+    z-index: 999;
+    padding: 2rem; 
+    position: fixed;
+    overflow-y: auto;
+    z-index: 2;
+    width: 100%;
+}
+ 
+main ul {  
+    margin-top: 10px;
+    padding: 10px;
+    line-height: 1.5;
+}
+
+main h1 { 
+    margin-top: 40px;
+    width: 40%;
+    font-size: 35px;
+    font-family: "Lato";
+    padding: 5px;
+    z-index: 1;
+    position: relative; 
+}
+
+main p {  
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-family: "Lato";
+    line-height: normal;
+}
+
+
+
+.paginator {
+    text-align: center;
+    padding: 5px 0;
+    margin-top: 2px; 
+    display: inline-flex; 
+    gap: 7px;
+    list-style-type: none;
+    z-index: 4;
+    color: #FD7E14;
+}
+
+.paginator .current {
+    font-weight: bold; 
+    background-color: #eee; 
+}
+
+.login-container {
+    background-color: #e9ebf0;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    padding: 35px; 
+    max-width: 900%; 
+    margin: 4.7% auto; 
+    float: left;
+    margin-left: 350px;
+}    
+
+.login-container p label {
+    width: 100% - 20px; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+}
+
+.login-container child4 {
+    margin-top: 1.3rem; 
+    text-align: center; 
+}
+
+.signup-container {
+    background-color: #e9ebf0;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    padding: 20px; 
+    max-width: 400px; 
+    margin: 3% auto; 
+    float: right;
+    margin-right: 350px;
+}    
+
+.signup-container p {
+    font-size: 20px;
+    margin-top: 5px;
+    padding: 20px;
+}
+
+.signup-container form p {
+    margin: 2px;
+    padding: 10px;
+}
+     
+.login-container p {
+    margin-top: 1rem;
+    margin-bottom: 1.3rem;
+    text-align: left; 
+} 
+
+button, .button, ul.paginator li a, .content p a,
+.login-container .btn, .signup-container a,
+.login-container button, .signup-container form button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+button:hover, .button:hover, ul.paginator li a:hover {
+    background-color: #0056b3; 
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.book-item {
+    max-width: 175px;  
+    max-height: 200px;
+    margin: 5px;      
+    padding: 5px;     
+    border: 3px solid #FD7E14; 
+    text-align: center; 
+    z-index: 4;
+}
+
+.book-item:hover {
+    transform: scale(1.05); 
+}
+
+.book-item a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+.book-cover {
+    width: 90px;  
+    height: 137px; 
+    object-fit: cover; 
+}
+
+
+.book-item h2 {
+    text-align: center;
+    margin: 10px 0; 
+    font-size: 15px;
+    margin-top:1px;
+}
+    
+.review-content {
+    padding: 10px;
+    margin: 10px 0;
+    width: 60%;
+    border-radius: 1rem;
+    border: 5px solid #FD7E14;
+    background-color: #e9ebf0;
+}
+
+strong {
+    border-bottom-color: #0056b3;
+    background-color: #e9ebf0;
+}
+
+.review-detail-scrollable {
+    max-height: 100vh;  
+}
+
+.review-detail-scrollable p  {
+     border-bottom-color: #0056b3;
+     background-color: #e9ebf0;
+     border-radius: 0.5rem;
+}
+
+.review-detail-scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+.review-detail-scrollable h2 {
+    margin-top: 5px;
+    font-size: 25px;
+    float: left;
+}
+
+.review-detail-scrollable ul li {
+    list-style-type: none;
+}
+
+.review-detail-scrollable ul p {
+    margin-top: 50px;
+    border-bottom: 3px solid;
+    border-bottom-color: #0056b3;
+    background-color: #e9ebf0;
+}
+
+main .review-detail-scrollable {
+    height: 583px;
+} 
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-item {
+    border: 5px solid #ccc;
+    border-color: #FD7E14;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e9ebf0;
+    
+}
+
+.review-item h2 {
+    color: #FD7E14;
+    margin-bottom: 5px;
+}
+
+.review-item p {
+    margin-bottom: 5px;
+    color: #666; 
+}
+
+main .review-item {
+    height: 218px
+}
+
+main .content {
+    height: 597px;
+} 
+
+.search-form-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -49px;  
+    margin-bottom: -16px;
+}
+
+.button {
+    background-color: #007bff; 
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-top: 8px;
+    margin-bottom: 7px;
+}
+
+
+.button:hover {
+    background-color: #0056b3; 
+}
+
+.buttons {
+    margin-top: 2.5px;
+}
+
+
+.authors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+  
+.author-item {
+    flex-basis: calc(33.333% - 20px); 
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.author-item h2 a {
+    color: #007bff;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+.author-name a:hover {
+    text-decoration: underline; 
+}
+
+.author-photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; 
+}
+
+.genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.genre-item {
+    margin: 10px;
+    padding: 10px;
+    border: 5px solid #FD7E14; 
+    width: 255px;
+    height: 130px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.genre-item h2 a {
+    margin: 0;
+    padding: 10px 0;
+    color: #007bff;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 25px;
+}
+
+main .genre-list {
+    height: 458px
+}
+
+.container-user-update .review-container,
+.container-user-update .comment-container {
+    margin-bottom: 30px; 
+}
+
+.container-user-update form input,
+.container-user-update form textarea {
+    margin-bottom: 10px; 
+}
+
+.container-user-update div {
+    margin: 15px;
+}
+
+.container-user-update {
+    min-height: 900px; 
+    overflow-y: auto; 
+}
+
 

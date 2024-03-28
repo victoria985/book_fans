@@ -32,8 +32,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bookclub',
-    'user_profile',
+    'user_profile_V2',
+    'tinymce',
     'django.contrib.admin',
+    'django_select2',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -107,6 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+LOCALE_PATHS = [BASE_DIR / 'bookclub' / 'locale']
+
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
     ('en-us', 'US English'),
@@ -136,6 +140,23 @@ MEDIA_ROOT = BASE_DIR.joinpath(MEDIA_URL)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
+
+TINYMCE_DEFAULT_CONFIG = {
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap anchor "
+               "searchreplace visualblocks code insertdatetime "
+               "media table paste help wordcount",
+    "toolbar": "undo redo | bold italic underline strikethrough | "
+               "fontselect fontsizeselect formatselect | "
+               "alignleft aligncenter alignright alignjustify | "
+               "outdent indent | numlist bullist checklist | "
+               "forecolor backcolor casechange permanentpen "
+               "formatpainter removeformat | pagebreak | "
+               "charmap emoticons | insertfile image media "
+               "pageembed link anchor codesample | "
+               "ltr rtl | showcomments addcomment code",
+    "custom_undo_redo_levels": 10,
+}
 
 try:
     from .local_settings import *
