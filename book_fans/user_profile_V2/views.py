@@ -19,54 +19,56 @@ class CommentListView(generic.ListView):
     def get_queryset(self):
         return models.Comment.objects.all()
 
-
-def signup(request: HttpRequest) -> HttpResponse:
-    if request.method == "POST":
-        form = forms.CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _("Thank you! You can log in now with your credentials."))
-            return redirect("login")
-    else:
-        form = forms.CreateUserForm()
-    return render(request, 'user_profile_V2/signup.html', {
-        'form': form,
-    })
-
 def signup(request):
     if request.method == 'POST':
         user_form = forms.CreateUserForm(request.POST)
         profile_form = forms.ProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             new_user = user_form.save()
-            new_profile = UserProfileV2.objects.create(user=new_user)
-            new_profile.picture = profile_form.cleaned_data['picture']
-            new_profile.save()
+            UserProfileV2.objects.create(
+                user=new_user,
+                picture=profile_form.cleaned_data['picture']
+            )
             messages.success(request, _("Thank you! You can log in now with your credentials."))
             return redirect('login')
     else:
         user_form = forms.CreateUserForm()
         profile_form = forms.ProfileForm()
-    return render(request, 'user_profile_V2/signup.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'user_profile_V2/signup.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
 
 @login_required
-def user_detail(request: HttpRequest, username: str | None = None) -> HttpResponse:
-    user = request.user if not username else get_object_or_404(get_user_model(), username=username)  
-    return render(request, 'user_profileV_2/user_detail.html', {
-        'object': user,
+def user_profile(request):
+    profile, created = UserProfileV2.objects.get_or_create(user=request.user)
+    return render(request, 'user_profile_V2/user_profile.html', {
+        'user': request.user,
+        'profile': profile,
+        'user_reviews': Review.objects.filter(user=request.user),
+        'user_comments': Comment.objects.filter(user=request.user)
     })
 
 @login_required
 def user_update(request):
+    profile, created = UserProfileV2.objects.get_or_create(user=request.user)
     if request.method == "POST":
-        form = forms.ProfileForm(request.POST, instance=request.user.userprofilev2)
-        if form.is_valid():
-            form.save()
+        user_form = forms.UserForm(request.POST, instance=request.user)
+        profile_form = forms.ProfileForm(request.POST, request.FILES, instance=profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             messages.success(request, "Your profile has been updated.")
-            return redirect("user_detail")
+            return redirect("user_profile")
     else:
-        form = forms.ProfileForm(instance=request.user.userprofilev2)
-    return render(request, "user_profile_V2/user_update.html", {"form": form})
+        user_form = forms.UserForm(instance=request.user)
+        profile_form = forms.ProfileForm(instance=profile)
+    return render(request, "user_profile_V2/user_update.html", {
+    "user_form": user_form,
+    "profile_form": profile_form,
+    "user_reviews": Review.objects.filter(user=request.user),
+    "user_comments": Comment.objects.filter(user=request.user)
+})
 
 @login_required
 def user_delete(request):
@@ -90,8 +92,6 @@ def comment_create(request, review_id):
     else:
         form = forms.CommentForm()
     return render(request, "user_profile_V2/comment_create.html", {'form': form, 'review': review})
-
-
 
 @login_required
 def comment_delete(request, pk):

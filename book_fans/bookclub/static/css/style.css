@@ -387,7 +387,7 @@ main .review-item {
 }
 
 main .content {
-    height: 527px;
+    height: 597px;
 } 
 
 .search-form-container {
@@ -475,3 +475,24 @@ main .content {
 main .genre-list {
     height: 458px
 }
+
+.container-user-update .review-container,
+.container-user-update .comment-container {
+    margin-bottom: 30px; 
+}
+
+.container-user-update form input,
+.container-user-update form textarea {
+    margin-bottom: 10px; 
+}
+
+.container-user-update div {
+    margin: 15px;
+}
+
+.container-user-update {
+    min-height: 900px; 
+    overflow-y: auto; 
+}
+
+

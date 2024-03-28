@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
@@ -165,7 +166,11 @@ def review_edit(request, pk):
         form = forms.ReviewForm(instance=review)
     return render(request, 'bookclub/review_edit.html', {'form': form})
 
+def is_staff(user):
+    return user.is_authenticated and user.is_staff
+
 @login_required
+@user_passes_test(is_staff)
 def book_delete(request, pk):
     book = get_object_or_404(models.Book, pk=pk)
     if request.method == 'POST':
@@ -175,6 +180,7 @@ def book_delete(request, pk):
     return render(request, 'bookclub/book_delete.html', {'book': book})
 
 @login_required
+@user_passes_test(is_staff)
 def author_delete(request, pk):
     author = get_object_or_404(models.Author, pk=pk)
     if request.method == 'POST':
@@ -184,11 +190,12 @@ def author_delete(request, pk):
     return render(request, 'bookclub/author_delete.html', {'author': author})
 
 @login_required
+@user_passes_test(is_staff)
 def review_delete(request, pk):
-    review = get_object_or_404(models.Review, pk=pk)
+    review = get_object_or_404(Review, pk=pk)
     if request.method == 'POST':
         review.delete()
-        messages.success(request, _('The review has been deleted successfully.'))
-        return redirect('review_list')
-    return render(request, 'bookclub/review_delete.html', {'review': review})
+        messages.success(request, _('Comment has been deleted.'))
+        return redirect('kur_norite_nukreipti_po_istrynimo')
+    return render(request, 'comment_confirm_delete.html', {'review': review})
     

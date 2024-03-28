@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "User Profile" %}{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>{% trans "User Profile" %}</h1>
+    <section>
+        {% if user.userprofilev2.picture %}
+            <img src="{{ user.userprofilev2.picture.url }}" alt="{% trans 'Profile Image' %}">
+        {% else %}
+            <p>{% trans "No profile image available." %}</p>
+        {% endif %}
+        <p><strong>{% trans "Username:" %}</strong> {{ user.username }}</p>
+        <p><strong>{% trans "Name:" %}</strong> {{ user.first_name }}</p>
+        <p><strong>{% trans "Last Name:" %}</strong> {{ user.last_name }}</p>
+        <p><strong>{% trans "Email:" %}</strong> {{ user.email }}</p>
+        <a class="button" href="{% url 'user_update' %}">{% trans "Update Profile" %}</a>
+        <a class="button" href="{% url 'index' %}">{% trans "Return to Homepage" %}</a>
+    </section>
+</div>
+{% endblock %}
+
+
+

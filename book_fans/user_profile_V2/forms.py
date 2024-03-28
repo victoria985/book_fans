@@ -25,8 +25,8 @@ class ProfileForm(forms.ModelForm):
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = get_user_model()  
-        fields = ("first_name", "last_name", "email", )
+        model = get_user_model()
+        fields = ['username', 'first_name', 'last_name', 'email']
 
 
 class CommentForm(forms.ModelForm):

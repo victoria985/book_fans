@@ -12,8 +12,10 @@
     <p>{{ author.biography|safe }}</p>
   </div>
   <div class="buttons">
+    {% if request.user.is_staff %}
+      <a class="button" href="{% url 'author_delete' author.id %}">{% trans "Delete This Author" %}</a>
+    {% endif %}
     {% if request.user.is_authenticated %}
-      <a href="{% url 'author_delete' author.pk %}" class="button delete-button">{% trans "Delete Author" %}</a>
       <a href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url 'author_list' %}{% endif %}" class="button return-button">{% trans "return"|capfirst %}</a>
     {% endif %}
   </div>    
